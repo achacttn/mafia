@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyText
+  password_digest: MyText
+  password_confirmation: MyText
+  alive: false
+  mafia: false
+  image: MyText
+
+two:
+  name: MyText
+  password_digest: MyText
+  password_confirmation: MyText
+  alive: false
+  mafia: false
+  image: MyText
