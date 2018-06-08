@@ -15,3 +15,24 @@
  */
 
  @import 'bootstrap';
+
+ .signIn {
+   width: 300px;
+   margin: 0 auto;
+   text-align: center;
+ }
+
+ .userForm{
+   text-align: center;
+   width: 700px;
+   margin: 0 auto;
+ }
+
+ .cancelButton {
+   float: right;
+   margin-right: 30vw;
+ }
+
+ li {
+   list-style-type: none;
+ }

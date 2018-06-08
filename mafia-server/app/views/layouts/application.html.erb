@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MafiaServer</title>
+    <title>Mafia Game</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
-
   <body>
+<<<<<<< HEAD
     <nav class="login">
       <% if @current_user.present? %>
       Welcome, <%= @current_user.username %>
@@ -64,6 +64,26 @@
         <%= link_to 'Moons', moons_path( @moon ), class:"nav-link active" %>
       </li>
       </ul>
+=======
+    <h1>Mafia</h1>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <% if @current_user.present? %>
+    <div class="nav navbar-nav navbar-right">
+     <p>Welcome <strong><%= @current_user.name%>!</strong></p>&nbsp;&nbsp;&nbsp;&nbsp;
+     <div class="text-left settingButton">
+        <%= link_to "Setting", edit_user_path(@current_user), class: "btn btn-primary btn-block btn-sm buttonFont"%>
+                        </div>&nbsp;&nbsp;&nbsp;&nbsp;
+      <div class = "settingButton">
+         <%= link_to "Log out", login_path, method: :delete, class: "btn btn-danger btn-block btn-sm buttonFont"%></div>
+   </div>
+   <% else %>
+   <li class="nav-item">
+     <%= link_to "Sign Up", new_user_path%>
+   </li>
+ <% end %>
+</nav>
+    <hr>
+>>>>>>> 26bdc8343a7f280b666e8aba5552ecea2e75c5b0
 
     <%= yield %>
   </body>

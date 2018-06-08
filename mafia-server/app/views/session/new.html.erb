@@ -1,2 +1,15 @@
-<h1>Session#new</h1>
-<p>Find me in app/views/session/new.html.erb</p>
+<h2 class="signIn">Please sign in</h2>
+
+<div class="signIn"><strong><%= flash[:error] %></strong></div>
+<br>
+<div class="form-group signIn">
+<%= form_tag login_path do%>
+  <%= label_tag :name%>
+  <%= text_field_tag :name, nil, class: "form-control", placeholder:"Enter name"%>
+  <br>
+  <%= label_tag :password %>
+  <%= password_field_tag :password, nil, class: "form-control", placeholder:"Password"%>
+  <br>
+  <%= submit_tag "Login" , class:"btn btn-primary"%>
+<% end %>
+</div>
