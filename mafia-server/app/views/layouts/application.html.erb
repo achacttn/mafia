@@ -10,6 +10,61 @@
   </head>
 
   <body>
+    <nav class="login">
+      <% if @current_user.present? %>
+      Welcome, <%= @current_user.username %>
+
+      <ul class="nav justify-content-left">
+      <li class="nav-item">
+      <%= link_to 'Logout', login_path, method: :delete, class:"nav-link active" %>
+    </li>
+
+    <ul class="nav justify-content-left">
+    <li class="nav-item">
+      <%= link_to 'Profile', profile_path, class:"nav-link active" %>
+    </li>
+
+    <ul class="nav justify-content-left">
+    <li class="nav-item">
+      <%= link_to 'Ask question', new_question_path, class:"nav-link active" %>
+    </li>
+
+    <ul class="nav justify-content-left">
+    <li class="nav-item">
+      <%= link_to 'Questions Index', questions_path, class:"nav-link active" %>
+    </li>
+
+      <% else %>
+      <ul class="nav justify-content-left">
+      <li class="nav-item">
+      <%= link_to 'Login', login_path, class:"nav-link active" %>
+    </li>
+
+    <ul class="nav justify-content-left">
+    <li class="nav-item">
+      <%= link_to 'Sign up', new_user_path, class:"nav-link active" %>
+    </li>
+      <% end %>
+
+    </nav>
+    <ul class="nav justify-content-left">
+      <li class="nav-item">
+        <%= link_to 'Home', root_path, class:"nav-link active" %>
+        </li>
+
+        <li class="nav-item">
+        <%= link_to 'Solar System', regions_path( @region ), class:"nav-link active" %>
+      </li>
+
+        <li class="nav-item">
+        <%= link_to 'Planets', planets_path( @planet ), class:"nav-link active" %>
+      </li>
+
+        <li class="nav-item">
+        <%= link_to 'Moons', moons_path( @moon ), class:"nav-link active" %>
+      </li>
+      </ul>
+
     <%= yield %>
   </body>
 </html>
