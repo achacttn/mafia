@@ -21,7 +21,7 @@
     <%= f.password_field :password_confirmation,class: "form-control one" %>
     <br>
     <% f.label :image %>
-    <%# f.cl_image_upload :image,class: "form-control one"%>
+    <%= f.cl_image_upload :image,class: "form-control one"%>
     <br><br>
     <%= f.submit class:"btn btn-success"%>
   <% end %>

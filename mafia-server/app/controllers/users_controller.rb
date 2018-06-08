@@ -11,6 +11,10 @@ def create
 
   if user.persisted?
     session[:user_id] = user.id
+    image = Cloudinary::Uploader.upload(params[:file])
+    user.image = image["public_id"]
+    user.save
+
     redirect_to user_path(user.id)
   else
     flash[:errors] = user.errors.full_messages
