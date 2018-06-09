@@ -1,0 +1,46 @@
+<%= form_for(@room, :html => {:multipart => true}) do |f| %>
+<% if flash[:errors] %>
+  <strong>The following errors need to be corrected :</strong>
+  <ol>
+    <% flash[:errors].each do |e| %>
+    <li>
+      <%= e %>
+    </li>
+    <% end %>
+  </ol>
+<% end %>
+
+<div class="form-group row">
+  <label for="colFormLabel" class="col-sm-2 col-form-label col-form-label-sm">
+  <%= f.label :name %>
+</label>
+  <div class="col-sm-10">
+  <%= f.text_field :name %>
+  </div>
+</div>
+  <br>
+
+  <div class="form-group row">
+    <label for="colFormLabel" class="col-sm-2 col-form-label col-form-label-sm">
+  <%= f.label :description %>
+</label>
+    <div class="col-sm-10">
+  <%= f.text_field :description %>
+</div>
+</div>
+  <br>
+  <div class="form-group row">
+    <label for="colFormLabel" class="col-sm-2 col-form-label col-form-label-sm">
+  <%= f.label "Room image: " %>
+</label>
+<div class="col-sm-10">
+  <%= f.cl_image_upload :image %>
+</div>
+</div>
+      <br>
+      <br>
+  <div class="col-sm-10">
+  <%= f.submit "Save", class: "btn btn-primary btn-lg" %>
+  </div>
+
+  <% end %>

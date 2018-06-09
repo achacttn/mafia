@@ -1,6 +1,11 @@
 <h1>Rooms:</h1>
 <% @rooms.each do |e|%>
 <li>
-  <%= link_to e.name %>
+  <%= link_to e.name, room_path(e) %>
 </li>
+<% end %>
+<br>
+<br>
+<% if @current_user.present? %>
+<%= link_to 'Create new', new_room_path( @room ) %>
 <% end %>
