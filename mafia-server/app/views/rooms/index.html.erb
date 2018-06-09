@@ -1,11 +1,28 @@
 <h1>Rooms:</h1>
-<% @rooms.each do |e|%>
-<li>
-  <%= link_to e.name, room_path(e) %>
-</li>
-<% end %>
-<br>
-<br>
+
 <% if @current_user.present? %>
-<%= link_to 'Create new', new_room_path( @room ) %>
+<%= link_to 'Create new', new_room_path( @room ), class: "btn btn-success btn-block btn-sm buttonFont customButton" %>
 <% end %>
+<br>
+<div class="container">
+  <div class="row">
+    <% @rooms.each do |e|%>
+    <div class="col-lg-5 roomColumns">
+      <span class: "roomName">
+        <%= e.name %>
+      </span>
+       <div class="playersDisplay">
+         <div class="playersDisplayTitle">Players Count</div>
+         <%= e.users.count %>/3
+       </div>
+       <% if e.users.count===3%>
+         <div class = "playButton">
+           <%= link_to "Enter Room", room_path(e.id), class: "btn btn-success btn-block btn-sm buttonFont" %>
+         </div>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+</div>
+<br>
+<br>
