@@ -20,7 +20,11 @@
    width: 300px;
    margin: 0 auto;
    text-align: center;
- }
+  }
+ .nav-user{
+    justify-content: flex-end;
+    padding: 5px 5px ;
+  }
 
  .userForm{
    text-align: center;
