@@ -8,12 +8,12 @@
 
 
 Room.destroy_all
-r1 = Room.create name: 'Oceania', playerCount: 2
-r2 = Room.create name: 'WigglesTown', playerCount: 3
-r3 = Room.create name: 'Amazon', playerCount: 3
-r4 = Room.create name: 'Something', playerCount: 1
-r5 = Room.create name: 'AnotherPlace', playerCount: 2
-r6 = Room.create name: 'ThisPlace', playerCount: 3
+r1 = Room.create name: 'Oceania', playerCount: 2, description: "Test"
+r2 = Room.create name: 'WigglesTown', playerCount: 3, description: "Test"
+r3 = Room.create name: 'Amazon', playerCount: 3, description: "Test"
+r4 = Room.create name: 'Something', playerCount: 1, description: "Test"
+r5 = Room.create name: 'AnotherPlace', playerCount: 2, description: "Test"
+r6 = Room.create name: 'ThisPlace', playerCount: 3, description: "Test"
 
 puts "Created #{ Room.all.length} rooms."
 

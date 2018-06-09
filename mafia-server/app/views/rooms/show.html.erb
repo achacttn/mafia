@@ -1,3 +1,13 @@
-<h1>Rooms<%= @room.name %></h1>
+<h1>Rooms <%= @room.name %></h1>
+<br>
+<br>
+<% if @room.image.present? %>
+  <%= cl_image_tag @room.image, class: "img" %>
+  <% end %>
+<% if @current_user.present? %>
+<%= link_to 'Edit', edit_room_path( @room ) %>
+|
+<%= link_to 'Delete', room_path( @room ), method: 'delete' %>
+<% end %>
 <br>
 <br>
