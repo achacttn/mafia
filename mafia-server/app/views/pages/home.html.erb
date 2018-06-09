@@ -1,0 +1,68 @@
+<body>
+<h2>Please read the instructions below
+  <br>and sign in or register to participate in the game.</h2>
+
+
+<button id="Btn" type="button" class="btn btn-dark">Instructions</button>
+
+
+<div id="Instructions" class="instructions">
+
+
+  <div class="content">
+    <p>The Mafia party game presents a conflict between the Mafia – the informed minority – and the Innocents – the uninformed majority. Originated by Dmitry Davidoff of the USSR in 1986, this popular game has many constiations and can be played by a group of seven or more people. For very large groups, we suggest adding additional characters.
+
+    <br>The game has two phases; night, when the Mafia might secretly “murder” an innocent, and “day” when Innocents vote to eliminate a Mafiosi suspect. The game ends when all the Mafia members are eliminated or there are more Mafia members than Innocents.</p>
+    <button id="Close" type="button" class="btn btn-dark">Close</button>
+  </div>
+</div>
+
+<script>
+
+const instruc = document.getElementById('Instructions');
+const btn = document.getElementById("Btn");
+const close = document.getElementById("Close");
+btn.onclick = function() {
+    instruc.style.display = "block";
+}
+close.onclick = function() {
+    instruc.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == instruc) {
+        instruc.style.display = "none";
+    }
+}
+</script>
+</body>
+
+<style>
+body {
+    font-family: Comic sans-serif;
+    background-image: url('/assets/mafia_1_hero.jpg');
+    background-repeat: no-repeat;
+    background-size: 90%;}
+
+
+.instructions {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #808287;
+    background-color: rgba(0,0,0,0.4);
+}
+
+
+.content {
+    background-color: #808287;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+
+}
+</style>
