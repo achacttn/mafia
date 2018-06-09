@@ -36,3 +36,36 @@
  li {
    list-style-type: none;
  }
+
+ .roomColumns {
+   border: 1px solid black;
+   margin: 10px;
+   height: 200px;
+ }
+
+ .playersDisplay {
+   float:right;
+   font-size: 30px;
+   font-style: italic;
+   font-weight: bold;
+   text-align: right;
+ }
+
+ .playersDisplayTitle, .roomName {
+   font-size: 20px!important;
+ }
+
+ .playButton {
+   float:right;
+   position: absolute;
+   right: 20px;
+   bottom: 20px;
+ }
+
+ .col-sm-1 {
+   text-align: center;
+ }
+
+ .customButton {
+   width: 130px;
+ }
