@@ -13,11 +13,11 @@ class RoomsController < ApplicationController
       req = Cloudinary::Uploader.upload(params[:file])
       @room.image = req["public_id"]
     end
-
     @room.save
 
     if @room.persisted?
       redirect_to rooms_path
+
 
     else
       flash[:errors] = @room.errors.full_messages
