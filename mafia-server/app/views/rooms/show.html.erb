@@ -25,25 +25,32 @@
 <br>
 <%# link_to "Back to Index", rooms_path, class: "btn btn-info btn-block btn-sm buttonFont customButton" %>
 
-<div class="row col-md-8 col-md-offset-2">
-
-<div class="panel panel-default">
-  <% if @room.messages.any? %>
-    <div class="panel-body" id="messages">
-      <%= render partial: 'messages/message', collection: @room.messages%>
-    </div>
-  <%else%>
-    <div class="panel-body hidden" id="messages">
-    <%= 'enter a message' %>
-    </div>
-  <%end%>
+<p>Please type your message below :</p>
+<% if flash[:errors] %>
+  <strong>The following errors need to be corrected :</strong>
+  <ol>
+    <% flash[:errors].each do |e| %>
+    <li>
+      <%= e %>
+    </li>
+    <% end %>
+  </ol>
+<% end %>
+<div class="message">
+  <%= form_for @message do |m| %>
+  <div class="form-group row">
+  <div class="col-sm-10">
+   <%= m.text_area :text_body, placeholder: 'Chat here' %>
+  </div>
+  </div>
+   <%= hidden_field_tag :room_id, @room.id %>
+   <div class="col-sm-10">
+   <%= m.submit "Save", class: "btn btn-primary btn-lg" %>
+   <% end %>
 </div>
 
-  <%= render partial: 'messages/message_form', locals: {message: @message, room: @room}%>
-</div>
 
-<h1>Messages</h1>
-<% @room.messages.each do |m| %>
-  <%= m.text_body %> 
-  <br>
-  <% end %>
+<h1>History</h1>
+<% @room.messages.each do |r| %>
+  <%= r.text_body %> <br>
+<% end %>

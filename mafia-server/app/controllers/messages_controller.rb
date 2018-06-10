@@ -4,11 +4,17 @@ class MessagesController < ApplicationController
   def create
     message = Message.new(message_params)
     message.user = @current_user
-    # message.room_id = params[:room_id]
+    message.room_id = params[:room_id]
     message.save
-    redirect_to room_path
-    raise 'hell'
+    if message.persisted?
+      redirect_to room_path params[:room_id]
+    else
+      flash[:errors] = message.errors.full_messages
+      redirect_to room_path params[:room_id]
+    end
   end
+
+
 
   private
 
