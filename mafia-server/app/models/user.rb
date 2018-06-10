@@ -5,4 +5,5 @@ class User < ApplicationRecord
   validates :password, presence: true, on: :create
 
   has_many :gameStates, through: :rooms
+  has_many :messages
 end
