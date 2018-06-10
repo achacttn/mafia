@@ -6,12 +6,22 @@ class MessagesController < ApplicationController
     message.user = @current_user
     message.room_id = params[:room_id]
     message.save
-    if message.persisted?
-      redirect_to room_path params[:room_id]
-    else
-      flash[:errors] = message.errors.full_messages
-      redirect_to room_path params[:room_id]
+
+
+    if message.save
+      ActionCable.server.broadcast 'messages',
+        message: message.text_body,
+        user: message.user.name
+        head :ok
     end
+
+    redirect_to room_path params[:room_id]
+    # if message.persisted?
+    #   redirect_to room_path params[:room_id]
+    # else
+    #   flash[:errors] = message.errors.full_messages
+    #   redirect_to room_path params[:room_id]
+    # end
   end
 
 
