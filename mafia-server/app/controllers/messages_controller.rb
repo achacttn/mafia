@@ -1,21 +1,32 @@
 class MessagesController < ApplicationController
   before_action :check_if_logged_in
 
+  # def broadcast
+  #   ActionCable.server.broadcast 'messages',
+  #     message: @message.text_body,
+  #     user: @message.user.name
+  #     head :ok
+  # end
+
   def create
-    message = Message.new(message_params)
-    message.user = @current_user
-    message.room_id = params[:room_id]
-    message.save
+    @message = Message.new
+    @message.user_id = @current_user.id
+    @message.text_body = params[:text_body]
+    @message.room_id = params[:room_id]
+    @message.save
 
-
-    if message.save
+    if @message.persisted?
+      # render :broadcast
       ActionCable.server.broadcast 'messages',
-        message: message.text_body,
-        user: message.user.name
+        message: @message.text_body,
+        user: @message.user.name
         head :ok
-    end
 
-    redirect_to room_path params[:room_id]
+    end
+    #
+    # raise "hell"
+      redirect_to room_path params[:room_id] and return
+
     # if message.persisted?
     #   redirect_to room_path params[:room_id]
     # else
