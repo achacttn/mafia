@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2018_06_12_031350) do
     t.datetime "updated_at", null: false
     t.text "description"
     t.text "image"
-    t.text "gamestate"
+    t.json "gamestate", default: {}
   end
 
   create_table "users", force: :cascade do |t|

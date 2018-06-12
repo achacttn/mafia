@@ -29,3 +29,5 @@ puts "Created #{ Room.all.length} rooms."
 
 r1.users << u1 << u2 << u3
 r2.users << u4 << u5
+
+puts 'aaa'
