@@ -44,7 +44,7 @@ class RoomsController < ApplicationController
   #   @message.text_body = params[:text_body]
   #   @message.room_id = params[:room_id]
   #   @message.save
-  #
+
   #   if @message.save
   #     render :broadcast
   #     # ActionCable.server.broadcast 'messages',
