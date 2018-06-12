@@ -4,4 +4,5 @@ class Message < ApplicationRecord
     validates :text_body, :presence => true
     validates :text_body, :length => { :minimum => 2 }
 
+
 end
