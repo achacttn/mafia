@@ -5,6 +5,6 @@ class Room < ApplicationRecord
     validates :name,:presence => true
     validates :name,:length => { :minimum => 2 }
     validates :name,uniqueness: true
-    serialize :gameStates
+    serialize :gamestate
 
 end
