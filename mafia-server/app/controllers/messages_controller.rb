@@ -12,10 +12,11 @@ class MessagesController < ApplicationController
       p @message.text_body
       p @message.user
 
-      ActionCable.server.broadcast 'messages',
+      ActionCable.server.broadcast "room_#{ params[:message][:room_id] }_messages",
         message: @message.text_body,
         user: @message.user.name
-        head :ok
+
+      head :ok
     # else
     #   binding.pry
     end

@@ -26,8 +26,8 @@ class RoomsController < ApplicationController
   end
 
   def show
-    # @room = Room.find( params[:id] )
-    @room = Room.includes(:messages).find( params[:id] )
+    @room = Room.find( params[:id] )
+    # @room = Room.includes(:messages).find( params[:id] )
     @message = Message.new
   end
 
