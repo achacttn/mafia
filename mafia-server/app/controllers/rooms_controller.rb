@@ -1,7 +1,6 @@
 class RoomsController < ApplicationController
   before_action :get_room, only: [:show, :edit, :update, :destroy]
-  before_action :check_if_logged_in, except: [:index, :show]
-
+  before_action :check_if_logged_in
 
   def new
     @room = Room.new
@@ -36,12 +35,12 @@ class RoomsController < ApplicationController
     if @room.users.length > 2
       @room.update(gamestate: {
         canStart: true,
-        hasStart: false
+        hasStarted: false
       })
     else
       @room.update(gamestate: {
         canStart: false,
-        hasStart: false
+        hasStarted: false
       })
     end
     
@@ -80,7 +79,11 @@ class RoomsController < ApplicationController
   # end
 
   def index
-    @rooms = Room.all
+    if @current_user.present?
+      @rooms = Room.all
+    else
+      redirect_to root_path
+    end
 
   end
 
