@@ -29,6 +29,20 @@ class RoomsController < ApplicationController
     # @room = Room.find( params[:id] )
     @room = Room.includes(:messages).find( params[:id] )
     @message = Message.new
+    @current_user.update( room_id: params[:id] )
+
+    if @room.users.length > 2
+      @room.update(gamestate: {
+        canStart: true,
+        hasStart: false
+      })
+    else
+      @room.update(gamestate: {
+        canStart: false,
+        hasStart: false
+      })
+    end
+    
   end
 
   def broadcast

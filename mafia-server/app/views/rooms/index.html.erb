@@ -13,14 +13,11 @@
       </span>
        <div class="playersDisplay">
          <div class="playersDisplayTitle">Players Count</div>
-         <%= e.users.count %>/3
+         <%= e.users.length %>/3
        </div>
-       <% if e.users.count!=3 && @current_user.present? %>
          <div class = "playButton">
            <%= link_to "Enter Room", room_path(e.id), class: "btn btn-success btn-block btn-sm buttonFont" %>
          </div>
-        <%else %>
-      <% end %>
     </div>
     <% end %>
   </div>
