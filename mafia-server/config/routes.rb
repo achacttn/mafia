@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   root to: "pages#home"
 
-  post '/message' => 'messages#create'
+  # post '/message' => 'messages#create'
+  post '/rooms/:id' => 'messages#create'
+  # post '/rooms/:id/messages' => 'rooms#messages', as: :messages_room
   get '/login' => "session#new"
   post '/login' => 'session#create'
   delete '/login' => 'session#destroy'
