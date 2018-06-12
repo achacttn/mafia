@@ -5,4 +5,5 @@ class Message < ApplicationRecord
     validates :text_body, :length => { :minimum => 2 }
     # after_create_commit { Room.perform_later(self) }
 
+
 end
