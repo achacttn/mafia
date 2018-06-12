@@ -47,16 +47,6 @@
   </ol>
 <% end %>
 
-<<<<<<< HEAD
-<h1>Chat</h1>
-<div id="messages">
-  <% @room.messages.each do |r| %>
-    <p><b><%= r.user.name %>: </b><%= r.text_body %></p>
-  <% end %>
-</div>
-
-<%= render partial: 'messages/message_form' %>
-=======
 
 
 
@@ -69,7 +59,6 @@
 </div>
 <br>
 <%= render partial: 'messages/message_form', locals:{room:@room, message: @message}%>
->>>>>>> 6e75da0f66df24540244a81cfc8e419ed70b8c2f
 
 <% if false %>
   <div class="message">
@@ -85,15 +74,3 @@
     <% end %>
   </div>
 <% end %>
-<<<<<<< HEAD
-
-<style>
-  #messages {
-    overflow: scroll;
-    height: 200px;
-    display: flex;
-    flex-direction: column-reverse;
-  }
-</style>
-=======
->>>>>>> 6e75da0f66df24540244a81cfc8e419ed70b8c2f
