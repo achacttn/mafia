@@ -14,7 +14,6 @@ u3 = User.create name: "Carol", password: "chicken", alive: true, mafia: false
 u4 = User.create name: "David", password: "chicken", alive: true, mafia: false
 u5 = User.create name: "Eve", password: "chicken", alive: true, mafia: false
 
-puts "Created #{User.all.length} users."
 
 
 Room.destroy_all
@@ -27,7 +26,11 @@ r6 = Room.create name: 'ThisPlace', playerCount: 0, description: "Test"
 
 puts "Created #{ Room.all.length} rooms."
 
-r1.users << u1 << u2 << u3
-r2.users << u4 << u5
+r1.users << u1 
+r1.users << u2
+r1.users << u3
+r2.users << u4 
+r2.users << u5
 
+puts "Created #{User.all.length} users."
 puts 'aaa'
