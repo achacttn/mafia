@@ -7,4 +7,6 @@ class User < ApplicationRecord
 
   # has_many :gameStates, through: :rooms
   has_many :messages, dependent: :destroy
+  serialize :stateobject
+
 end

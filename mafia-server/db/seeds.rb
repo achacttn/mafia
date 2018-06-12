@@ -9,11 +9,11 @@
 
 User.destroy_all
 
-u1 = User.create name: "Alex", password: "chicken", alive: true, mafia: true
-u2 = User.create name: "Bob", password: "chicken", alive: true, mafia: false
-u3 = User.create name: "Carol", password: "chicken", alive: true, mafia: false
-u4 = User.create name: "David", password: "chicken", alive: true, mafia: false
-u5 = User.create name: "Eve", password: "chicken", alive: true, mafia: false
+u1 = User.create name: "Alex", password: "chicken", stateobject: [{ "mafia": false, "alive": true }]
+u2 = User.create name: "Bob", password: "chicken", stateobject: [{ "mafia": false, "alive": true }]
+u3 = User.create name: "Carol", password: "chicken", stateobject: [{ "mafia": false, "alive": true }]
+u4 = User.create name: "David", password: "chicken", stateobject: [{ "mafia": true, "alive": true }]
+u5 = User.create name: "Eve", password: "chicken", stateobject: [{ "mafia": true, "alive": true }]
 
 
 Room.destroy_all
