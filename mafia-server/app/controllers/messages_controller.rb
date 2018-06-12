@@ -20,7 +20,7 @@ class MessagesController < ApplicationController
     # else
     #   binding.pry
     end
-    #
+
     # raise "hell"
       # redirect_to room_path params[:room_id] and return
 
