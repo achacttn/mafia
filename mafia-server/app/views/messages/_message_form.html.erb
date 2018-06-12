@@ -1,7 +1,11 @@
 
 <%= form_for @message, remote: true, authenticity_token: true do |f| %>
+<<<<<<< HEAD
+  <%= f.text_area :text_body, class: "form-control", data: {textarea: "message"} %>
+=======
   <%= f.label :Enter_message %>:
   <%= f.text_field :text_body, class: "form-control", data: {textarea: "message"}, id: "message_content" %>
+>>>>>>> 6e75da0f66df24540244a81cfc8e419ed70b8c2f
 
   <%= f.hidden_field :user_id, value: @current_user.id %>
   <%= f.hidden_field :room_id, value: @room.id %>
