@@ -23,9 +23,10 @@ class MessagesController < ApplicationController
         head :ok
 
     end
-    #
+
     # raise "hell"
-      redirect_to room_path params[:room_id] and return
+      
+    redirect_to room_path params[:room_id] and return
 
     # if message.persisted?
     #   redirect_to room_path params[:room_id]
