@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
 User.destroy_all
 
 u1 = User.create name: "Alex", password: "chicken", alive: true, mafia: true
@@ -13,7 +14,6 @@ u2 = User.create name: "Bob", password: "chicken", alive: true, mafia: false
 u3 = User.create name: "Carol", password: "chicken", alive: true, mafia: false
 u4 = User.create name: "David", password: "chicken", alive: true, mafia: false
 u5 = User.create name: "Eve", password: "chicken", alive: true, mafia: false
-
 
 
 Room.destroy_all
@@ -26,6 +26,7 @@ r6 = Room.create name: 'ThisPlace', playerCount: 0, description: "Test"
 
 puts "Created #{ Room.all.length} rooms."
 
+<<<<<<< HEAD
 r1.users << u1 
 r1.users << u2
 r1.users << u3
@@ -34,3 +35,10 @@ r2.users << u5
 
 puts "Created #{User.all.length} users."
 puts 'aaa'
+=======
+
+r1.users << u1 << u2 << u3
+r2.users << u4 << u5
+
+puts 'aaa'
+>>>>>>> b34cd3ee942839769b7dce508e0a166ebb85f418
