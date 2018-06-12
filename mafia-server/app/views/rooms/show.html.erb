@@ -27,7 +27,7 @@
 <% end %>
 <br>
   <div class="col-sm-10">
-    <% if @room.gamestate["canStart"] %>
+    <% if @room.gamestate[:canStart] %>
      <%= button_to "Start game", class: "btn btn-danger btn-lg", id: "start" %>
     <% else %>
       <%= 'Not enough players to start' %>
@@ -35,10 +35,6 @@
   </div>
 <br>
 <%# link_to "Back to Index", rooms_path, class: "btn btn-info btn-block btn-sm buttonFont customButton" %>
-
-if @user.stateObject["mafia"]
-  sdasdiu
-  else
 
 <% if flash[:errors] %>
   <strong>The following errors need to be corrected :</strong>
