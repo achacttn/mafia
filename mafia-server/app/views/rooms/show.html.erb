@@ -1,3 +1,7 @@
+<script>
+  const room_id = <%= @room.id %>;
+</script>
+
 <h1>Rooms <%= @room.name %></h1>
 <br>
 <br>
@@ -43,6 +47,7 @@
   </ol>
 <% end %>
 
+<<<<<<< HEAD
 <h1>Chat</h1>
 <div id="messages">
   <% @room.messages.each do |r| %>
@@ -51,21 +56,36 @@
 </div>
 
 <%= render partial: 'messages/message_form' %>
+=======
+
+
+
+
+<h1>Messages:</h1>
+<div id="messages" data-chatroom=<%=@room.id%>>
+  <% @room.messages.each do |r| %>
+    <b><%= r.user.name %>: </b><%= r.text_body %> <br></b><%= time_ago_in_words(r.created_at) %> <br>
+  <% end %>
+</div>
+<br>
+<%= render partial: 'messages/message_form', locals:{room:@room, message: @message}%>
+>>>>>>> 6e75da0f66df24540244a81cfc8e419ed70b8c2f
 
 <% if false %>
   <div class="message">
-    <%= form_tag @message do %>
-    <div class="form-group row">
+  <%= form_tag @message do %>
+  <div class="form-group row">
     <div class="col-sm-10">
-     <%= text_area_tag :text_body, placeholder= 'Chat here' %>
+      <%= text_area_tag :text_body, placeholder= 'Chat here' %>
     </div>
-    </div>
-     <%= hidden_field_tag :room_id, @room.id %>
-     <div class="col-sm-10">
-     <%= submit_tag "Save", class: "btn btn-primary btn-lg" %>
-     <% end %>
+  </div>
+  <%= hidden_field_tag :room_id, @room.id %>
+  <div class="col-sm-10">
+    <%= submit_tag "Save", class: "btn btn-primary btn-lg" %>
+    <% end %>
   </div>
 <% end %>
+<<<<<<< HEAD
 
 <style>
   #messages {
@@ -75,3 +95,5 @@
     flex-direction: column-reverse;
   }
 </style>
+=======
+>>>>>>> 6e75da0f66df24540244a81cfc8e419ed70b8c2f

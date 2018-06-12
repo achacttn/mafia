@@ -12,8 +12,24 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require_tree .
 //= require jquery3
+//= require_tree .
 //= require popper
 //= require bootstrap-sprockets
 //= require_tree ./channels
+
+// $(document).ready(function(){
+//
+//   $('#message_content').keydown(function(event) {
+//     if (event.keyCode === 13) {
+//       let msg = event.target.value
+//       let roomId = $("[data-chatroom]").data().room
+//       console.log(msg);
+//       console.log(roomId);
+//       App.messages.send({message: msg, room_id: roomId})
+//       // $('[data-textarea="message"]').val(" ")
+//       return false;
+//      }
+//    });
+//
+// });

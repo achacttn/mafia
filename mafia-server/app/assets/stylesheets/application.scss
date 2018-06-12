@@ -16,6 +16,11 @@
 
  @import 'bootstrap';
 
+#messages {
+  max-height: 400px;
+  overflow-y: scroll;
+}
+
  .signIn {
    width: 300px;
    margin: 0 auto;
