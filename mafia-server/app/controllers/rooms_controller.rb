@@ -31,6 +31,8 @@ class RoomsController < ApplicationController
     @message = Message.new
     @current_user.update( room_id: params[:id] )
 
+    
+
     if @room.users.length > 2
       @room.update(gamestate: {
         canStart: true,
