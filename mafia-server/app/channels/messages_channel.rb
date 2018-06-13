@@ -14,7 +14,7 @@ class MessagesChannel < ApplicationCable::Channel
     puts "send_message()"
     p data
     # p Room.all
-    p current_user
+    
   end
 
 end

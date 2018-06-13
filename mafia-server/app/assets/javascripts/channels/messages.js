@@ -17,11 +17,14 @@ $(document).ready(function () {
             .scrollTop( $('#messages')[0].scrollHeight );
             // return ret;
             break;
-          case 'GAME_READY_TO_START':
+          case 'GAME_START':
             console.log(  data );
             // another switch here to handle different data.type
             break;
-      
+          case 'TIMER'
+          
+          break
+          
         }
       },
 

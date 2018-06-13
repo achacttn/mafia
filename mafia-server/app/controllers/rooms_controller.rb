@@ -38,6 +38,7 @@ class RoomsController < ApplicationController
         hasStarted: false
       })
       ActionCable.server.broadcast "room_#{ @room.id }_messages",
+        
         action: 'GAME_READY_TO_START',
         count: 5  # whatever other data you want
 
