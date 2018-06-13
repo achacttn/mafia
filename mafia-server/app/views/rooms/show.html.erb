@@ -2,7 +2,7 @@
   const room_id = <%= @room.id %>;
 
   $(document).ready(function(){
-   
+
     $('#start').click(function(){
       console.log('clicked start');
       App.room_messages.send_message({test: 1, test2: 2});
@@ -59,15 +59,32 @@
 <% end %>
 
 
+<div id="publicChannel">
+  <h3>Messages:</h3>
+  <div id="messages">
+    <% @room.messages.each do |r| %>
+      <b><%= r.user.name %>: </b><%= r.text_body %> <br></b><%= time_ago_in_words(r.created_at) %> <br>
+    <% end %>
+  </div>
+  <br>
 
-
-
-<h1>Messages:</h1>
-<div id="messages" data-chatroom=<%=@room.id%>>
-  <% @room.messages.each do |r| %>
-    <b><%= r.user.name %>: </b><%= r.text_body %> <br></b><%= time_ago_in_words(r.created_at) %> <br>
-  <% end %>
-</div>
+  <%= render partial: 'messages/message_form', locals:{room:@room, message: @message}%>
+<div>
 <br>
-<%= render partial: 'messages/message_form', locals:{room:@room, message: @message}%>
 
+<%# if @room.gamestate[:hasStarted] %>
+  <% if @room.gamestate[:hasStarted]  && @current_user.stateobject[:mafia] %>
+  <hr>
+    <div id="privateChannel">
+      <h4>Mafia channel:</h4>
+      <div id="mafiaChannel">
+        <% @room.mafium.each do |r| %>
+          <b><%= r.user.name %>: </b><%= r.text_body %> <br></b><%= time_ago_in_words(r.created_at) %> <br>
+        <% end %>
+      </div>
+    </div>
+    <br>
+
+    <%= render partial: 'mafias/mafia_form', locals:{room:@room, message: @mafia}%>
+  <% end %>
+<%# end %>

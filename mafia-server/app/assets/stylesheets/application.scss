@@ -19,6 +19,22 @@
 #messages {
   max-height: 400px;
   overflow-y: scroll;
+  border: 1px solid black;
+  // display: inline-block;
+}
+
+#publicChannel {
+  width: 45vw;
+}
+
+#privateChannel {
+  max-height: 400px;
+  overflow-y: scroll;
+  width: 45%;
+  // right:0;
+  // width: 45vw;
+  border: 1px solid red;
+  display: inline-block;
 }
 
  .signIn {
