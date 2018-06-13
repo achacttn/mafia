@@ -49,76 +49,76 @@ class RoomsController < ApplicationController
   
 
 
-  #   if @room.gamestate['hasStarted']
+    if @room.gamestate['hasStarted']
 
-  #     @room.users.sample((@room.users.length/3).floor).each do |player|
-  #       player.update(stateobject: { mafia: true})
-  #     end
-  #     @room.users.each do |p|
-  #       if !p.stateobject['mafia']
-  #         player.update(stateobject: { mafia: false})
-  #       end
-  #     end
-  #   end
-  #   # binding.pry
-  #   livingMafia = []
-  #   livingCitizens = []
-  #   @room.users.each do |p|
-  #     if p.stateobject['alive']
-  #       if p.stateobject['mafia']
-  #         livingMafia.push(p)
-  #       else
-  #         livingCitizens.push(o)
-  #       end
-  #     end
-  #   end
+      @room.users.sample((@room.users.length/3).floor).each do |player|
+        player.update(stateobject: { mafia: true})
+      end
+      @room.users.each do |p|
+        if !p.stateobject['mafia']
+          player.update(stateobject: { mafia: false})
+        end
+      end
+    end
+    # binding.pry
+    livingMafia = []
+    livingCitizens = []
+    @room.users.each do |p|
+      if p.stateobject['alive']
+        if p.stateobject['mafia']
+          livingMafia.push(p)
+        else
+          livingCitizens.push(o)
+        end
+      end
+    end
 
-  #   def endingCheck()
-  #     # check number of livng mafia and living citizens
-  #     if livingMafia.length == 0
-  #       return true
-  #     elsif livingMafia.length > livingCitizens.length
-  #       return true
-  #     elsif livingMafia.length == 1 && livingCitizens.length == 1
-  #       return true
-  #     else
-  #       return false
-  #     end
-  #   end
+    def endingCheck()
+      # check number of livng mafia and living citizens
+      if livingMafia.length == 0
+        return true
+      elsif livingMafia.length > livingCitizens.length
+        return true
+      elsif livingMafia.length == 1 && livingCitizens.length == 1
+        return true
+      else
+        return false
+      end
+    end
 
-  #   def dayTimer()
-  #     timeTilDayEnd = 120
-  #     while (timeTilDayEnd != 0)
-  #       puts timeTilDayEnd
-  #       sleep 1
-  #       timeTilDayEnd = timeTilDayEnd-1
-  #     end
-  #   end
+    def dayTimer()
+      timeTilDayEnd = 120
+      while (timeTilDayEnd != 0)
+        puts timeTilDayEnd
+        sleep 1
+        timeTilDayEnd = timeTilDayEnd-1
+      end
+    end
 
-  #   def nightTimer()
-  #     timeTilNightEnd = 30
-  #     while (timeTilNightEnd != 0)
-  #       puts timeTilNightEnd
-  #       sleep 1
-  #       timeTilNightEnd = timeTilNightEnd-1
-  #     end
-  #   end
+    def nightTimer()
+      timeTilNightEnd = 30
+      while (timeTilNightEnd != 0)
+        puts timeTilNightEnd
+        sleep 1
+        timeTilNightEnd = timeTilNightEnd-1
+      end
+    end
     
-  #   dayOrNight = -1
+    dayOrNight = -1
     
-  #   loop do
+    loop do
 
-  #     if (endingCheck())
-  #       break
-  #     end
+      if (endingCheck())
+        break
+      end
 
-  #     if dayOrNight > 0
-  #       dayTimer()
-  #     else
-  #       nightTimer()
-  #     end
-  #     dayOrNight *= -1
-  #   end
+      if dayOrNight > 0
+        dayTimer()
+      else
+        nightTimer()
+      end
+      dayOrNight *= -1
+    end
 
   end
 
