@@ -1,0 +1,11 @@
+
+
+  <%= text_field_tag :text_body, nil, class: "form-control", id: 'mafia_message' %>
+  <%= button_tag "Submit", class: "btn btn-primary", id: 'mafia_send' %>
+
+<script>
+   $('#mafia_send').click(function(){
+     console.log( $('#mafia_message').val() );
+     App.mafia_messages.send_message({ message: $('#mafia_message').val() });
+   });
+</script>
