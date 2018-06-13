@@ -1,11 +1,11 @@
 
 
-<%= form_for @mafia, remote: true, authenticity_token: true do |f| %>
-  <%= f.label :Enter_message %>:
-  <%= f.text_field :text_body, class: "form-control", data: {textarea: "message"}, id: "message_content" %>
+  <%= text_field_tag :text_body, nil, class: "form-control", id: 'mafia_message' %>
+  <%= button_tag "Submit", class: "btn btn-primary", id: 'mafia_send' %>
 
-  <%= f.hidden_field :user_id, value: @current_user.id %>
-  <%= f.hidden_field :room_id, value: @room.id %>
-  <br>
-  <%= f.submit "Submit", class: "btn btn-primary", data: {send: "message"} %>
-<% end %>
+<script>
+   $('#mafia_send').click(function(){
+     console.log( $('#mafia_message').val() );
+     App.mafia_messages.send_message({ message: $('#mafia_message').val() });
+   });
+</script>

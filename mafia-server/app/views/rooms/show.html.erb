@@ -72,19 +72,19 @@
 <div>
 <br>
 
-<% if @current_user.stateobject[0][:mafia] %>
-<hr>
-  <div id="privateChannel">
-    <h4>Mafia channel:</h4>
-    <div id="mafiaChannel">
-      <% @room.mafium.each do |r| %>
-        <b><%= r.user.name %>: </b><%= r.text_body %> <br></b><%= time_ago_in_words(r.created_at) %> <br>
-      <% end %>
+<%# if @room.gamestate[:hasStarted] %>
+  <% if @room.gamestate[:hasStarted]  && @current_user.stateobject[:mafia] %>
+  <hr>
+    <div id="privateChannel">
+      <h4>Mafia channel:</h4>
+      <div id="mafiaChannel">
+        <% @room.mafium.each do |r| %>
+          <b><%= r.user.name %>: </b><%= r.text_body %> <br></b><%= time_ago_in_words(r.created_at) %> <br>
+        <% end %>
+      </div>
     </div>
-  </div>
-  <br>
+    <br>
 
-  <%= render partial: 'mafias/
-  mafia_form', locals:{room:@room, message: @mafia}%>
-
-<% end %>
+    <%= render partial: 'mafias/mafia_form', locals:{room:@room, message: @mafia}%>
+  <% end %>
+<%# end %>

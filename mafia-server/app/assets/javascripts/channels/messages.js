@@ -42,7 +42,13 @@ $(document).ready(function () {
         .append( msg )
         .scrollTop( $('#mafiaChannel')[0].scrollHeight );
         // return ret;
+      },
+
+      send_message: function( data ){
+        console.log( 'send_message', data );
+        this.perform('send_message', data );
       }
+
     });
 
     // Create a new websockets channel just for private messages to this user
