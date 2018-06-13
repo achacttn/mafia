@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 2018_06_12_134351) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "public"
   end
 
   create_table "rooms", force: :cascade do |t|

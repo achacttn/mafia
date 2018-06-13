@@ -38,88 +38,85 @@ class RoomsController < ApplicationController
         hasStarted: false
       })
       ActionCable.server.broadcast "room_#{ @room.id }_messages",
-        action: 'GAME_READY_TO_START',
-        count: 5  # whatever other data you want
-
-    else
-      @room.update(gamestate: {
-        canStart: false,
-        hasStarted: false
-      })
+        action: 'READY_TO_START'
+    # else
+    #   @room.update(gamestate: {
+    #     canStart: false,
+    #     hasStarted: false
+    #   })
     end
 
-    if @room.gamestate[:hasStarted]
-      @room.users.sample((@room.users.length/3).floor).each do |player|
-        player.stateobject[:mafia] = true
-      end
+    # if @room.gamestate[:hasStarted]
+    #   @room.users.sample((@room.users.length/3).floor).each do |player|
+    #     player.stateobject[:mafia] = true
+    #   end
 
-      @room.users.each do |p|
-        if !p.stateobject[:mafia]
-          p.stateobject[:mafia] = false
-        end
-      end
-    end
+    #   @room.users.each do |p|
+    #     if !p.stateobject[:mafia]
+    #       p.stateobject[:mafia] = false
+    #     end
+    #   end
+    # end
 
-  #   livingMafia = []
-  #   livingCitizens = []
-  #   @room.users.each do |p|
-  #     if p.stateobject['alive']
-  #       if p.stateobject['mafia']
-  #         livingMafia.push(p)
-  #       else
-  #         livingCitizens.push(o)
-  #       end
-  #     end
-  #   end
+    # livingMafia = []
+    # livingCitizens = []
+    # @room.users.each do |p|
+    #   if p.stateobject['alive']
+    #     if p.stateobject['mafia']
+    #       livingMafia.push(p)
+    #     else
+    #       livingCitizens.push(o)
+    #     end
+    #   end
+    # end
 
-  #   def endingCheck()
-  #     # check number of livng mafia and living citizens
-  #     if livingMafia.length == 0
-  #       return true
-  #     elsif livingMafia.length > livingCitizens.length
-  #       return true
-  #     elsif livingMafia.length == 1 && livingCitizens.length == 1
-  #       return true
-  #     else
-  #       return false
-  #     end
-  #   end
+    # def endingCheck()
+    #   # check number of livng mafia and living citizens
+    #   if livingMafia.length == 0
+    #     return true
+    #   elsif livingMafia.length > livingCitizens.length
+    #     return true
+    #   elsif livingMafia.length == 1 && livingCitizens.length == 1
+    #     return true
+    #   else
+    #     return false
+    #   end
+    # end
 
-  #   def dayTimer()
-  #     timeTilDayEnd = 120
-  #     while (timeTilDayEnd != 0)
-  #       puts timeTilDayEnd
-  #       sleep 1
-  #       timeTilDayEnd = timeTilDayEnd-1
-  #     end
-  #   end
+    # def dayTimer()
+    #   timeTilDayEnd = 120
+    #   while (timeTilDayEnd != 0)
+    #     puts timeTilDayEnd
+    #     sleep 1
+    #     timeTilDayEnd = timeTilDayEnd-1
+    #   end
+    # end
 
-  #   def nightTimer()
-  #     timeTilNightEnd = 30
-  #     while (timeTilNightEnd != 0)
-  #       puts timeTilNightEnd
-  #       sleep 1
-  #       timeTilNightEnd = timeTilNightEnd-1
-  #     end
-  #   end
+    # def nightTimer()
+    #   timeTilNightEnd = 30
+    #   while (timeTilNightEnd != 0)
+    #     puts timeTilNightEnd
+    #     sleep 1
+    #     timeTilNightEnd = timeTilNightEnd-1
+    #   end
+    # end
 
 
-    dayOrNight = -1
+    # dayOrNight = -1
 
-  #   loop do
-  #
-  #     if (endingCheck())
-  #       break
-  #     end
-  #
-  #     if dayOrNight > 0
-  #       dayTimer()
-  #     else
-  #       nightTimer()
-  #     end
-  #     dayOrNight *= -1
-  #   end
-  #
+    # loop do
+    #   if (endingCheck())
+    #     break
+    #   end
+  
+    #   if dayOrNight > 0
+    #     dayTimer()
+    #   else
+    #     nightTimer()
+    #   end
+    #   dayOrNight *= -1
+    # end
+  
   end
 
 

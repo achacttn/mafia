@@ -8,4 +8,14 @@ class Room < ApplicationRecord
     validates :name,uniqueness: true
     serialize :gamestate
 
+    def start_game
+      # room.start_game
+      self.gameState[:hasStarted] = true
+      self.save
+      # broadcast 
+    #    ActionCable.server.broadcast "room_#{ @room.id }_messages",
+    #     action: 'GAME_START
+    end
+
+
 end

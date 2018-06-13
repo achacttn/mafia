@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
-  belongs_to :rooms, optional: true, dependent: :destroy
+  belongs_to :room, optional: true, dependent: :destroy
   validates :name, presence: true
   validates :password, presence: true, on: :create
 

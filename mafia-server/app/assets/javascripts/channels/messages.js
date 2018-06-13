@@ -17,8 +17,8 @@ $(document).ready(function () {
             .scrollTop( $('#messages')[0].scrollHeight );
             // return ret;
             break;
-          case 'GAME_READY_TO_START':
-            console.log(  data );
+          case 'READY_TO_START':
+            
             // another switch here to handle different data.type
             break;
         }
@@ -27,8 +27,11 @@ $(document).ready(function () {
       send_message: function( data ){
         console.log( 'send_message', data );
         this.perform('send_message', data );
-      }
+      },
 
+      // assign_roles: function( data ){
+      //   this.perform();
+      // }
     });
 
 

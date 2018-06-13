@@ -15,6 +15,14 @@ class MessagesChannel < ApplicationCable::Channel
     p data
     # p Room.all
     p current_user
+
+
+    case data["event_type"]
+    when "start_game"
+      puts "START GAME"
+      current_user.room.start_game
+    end
+
   end
 
 end
