@@ -21,11 +21,12 @@ $(document).ready(function () {
             console.log(  data );
             // another switch here to handle different data.type
             break;
+      
         }
       },
 
       send_message: function( data ){
-        console.log( 'send_message', data );
+        console.log( 'send_message', data  );
         this.perform('send_message', data );
       }
 
