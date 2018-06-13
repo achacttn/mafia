@@ -5,9 +5,9 @@ class MessagesController < ApplicationController
 
     @message = Message.new message_params
     @message.user = @current_user
+    # raise "hell"
 
     if @message.save
-      # render :broadcast
 
       p @message.text_body
       p @message.user
@@ -20,6 +20,7 @@ class MessagesController < ApplicationController
     # else
     #   binding.pry
     end
+    # binding.pry
 
     # raise "hell"
       # redirect_to room_path params[:room_id] and return

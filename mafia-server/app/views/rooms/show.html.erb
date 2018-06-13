@@ -48,20 +48,55 @@
 <% end %>
 
 
+<div id="publicChannel">
+  <h3>Messages:</h3>
+  <div id="messages">
+    <% @room.messages.each do |r| %>
+      <b><%= r.user.name %>: </b><%= r.text_body %> <br></b><%= time_ago_in_words(r.created_at) %> <br>
+    <% end %>
+  </div>
+  <br>
 
-
-
-<h1>Messages:</h1>
-<div id="messages" data-chatroom=<%=@room.id%>>
-  <% @room.messages.each do |r| %>
-    <b><%= r.user.name %>: </b><%= r.text_body %> <br></b><%= time_ago_in_words(r.created_at) %> <br>
-  <% end %>
-</div>
+  <%= render partial: 'messages/message_form', locals:{room:@room, message: @message}%>
+<div>
 <br>
-<%= render partial: 'messages/message_form', locals:{room:@room, message: @message}%>
 
+<% if @current_user.stateobject[0][:mafia] %>
+<hr>
+  <div id="privateChannel">
+    <h4>Mafia channel:</h4>
+    <div id="mafiaChannel">
+      <% @room.mafium.each do |r| %>
+        <b><%= r.user.name %>: </b><%= r.text_body %> <br></b><%= time_ago_in_words(r.created_at) %> <br>
+      <% end %>
+    </div>
+  </div>
+  <br>
+
+  <%= render partial: 'mafias/
+  mafia_form', locals:{room:@room, message: @mafia}%>
+
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%# useless codes %>
 <% if false %>
-  <div class="message">
+<div class="message">
   <%= form_tag @message do %>
   <div class="form-group row">
     <div class="col-sm-10">
@@ -73,4 +108,4 @@
     <%= submit_tag "Save", class: "btn btn-primary btn-lg" %>
     <% end %>
   </div>
-<% end %>
+  <% end %>

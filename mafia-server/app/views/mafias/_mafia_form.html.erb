@@ -1,0 +1,11 @@
+
+
+<%= form_for @mafia, remote: true, authenticity_token: true do |f| %>
+  <%= f.label :Enter_message %>:
+  <%= f.text_field :text_body, class: "form-control", data: {textarea: "message"}, id: "message_content" %>
+
+  <%= f.hidden_field :user_id, value: @current_user.id %>
+  <%= f.hidden_field :room_id, value: @room.id %>
+  <br>
+  <%= f.submit "Submit", class: "btn btn-primary", data: {send: "message"} %>
+<% end %>

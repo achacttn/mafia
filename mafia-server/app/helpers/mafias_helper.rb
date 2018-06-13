@@ -1,0 +1,2 @@
+module MafiasHelper
+end
