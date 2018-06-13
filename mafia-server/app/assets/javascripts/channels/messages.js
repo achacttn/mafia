@@ -19,8 +19,12 @@ $(document).ready(function () {
             break;
           case 'READY_TO_START':
             
+            $('#start').show();
             // another switch here to handle different data.type
             break;
+          case 'UPDATING_PLAYERS':
+            console.log('working?', data);
+            // $('#playerlist').append( list_of_p )
         }
       },
 
@@ -32,6 +36,8 @@ $(document).ready(function () {
       // assign_roles: function( data ){
       //   this.perform();
       // }
+
+
     });
 
 

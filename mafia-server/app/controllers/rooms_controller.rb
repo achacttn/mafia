@@ -32,6 +32,11 @@ class RoomsController < ApplicationController
     @current_user.update( room_id: params[:id] )
     @current_user.update( stateobject: { mafia: nil, alive: nil } )
 
+    usercount = 0;
+    if usercount != @room.users.length
+      usercount = @room.users.length
+    end
+
     if @room.users.length > 2
       @room.update(gamestate: {
         canStart: true,
