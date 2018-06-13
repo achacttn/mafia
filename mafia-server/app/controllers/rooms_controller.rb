@@ -30,7 +30,7 @@ class RoomsController < ApplicationController
     @message = Message.new
     @mafia = Mafium.new
     @current_user.update( room_id: params[:id] )
-    @current_user.update( stateobject: { mafia: nil, alive: nil } )
+    @current_user.update( stateobject: { mafia: nil, alive: true } )
 
     if @room.users.length > 2
       @room.update(gamestate: {

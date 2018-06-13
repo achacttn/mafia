@@ -21,10 +21,18 @@ class MessagesChannel < ApplicationCable::Channel
     when "start_game"
       puts "START GAME"
       current_user.room.start_game
-      
+      p current_user.room_id
+
     when "remove_user"
-      puts "User removed"
+      puts "User removed!!!"
+      puts "="*100
+      p current_user.room_id
+      puts '1'*100
       current_user.room.update_current_users
+      remainingPlayers.each do |p|
+        puts p.id
+        puts "="*100
+      end
       current_user.room_id = nil
       ActionCable.server.broadcast "room_#{ params[:room_id]}_messages",
         action: 'UPDATING_PLAYERS',
