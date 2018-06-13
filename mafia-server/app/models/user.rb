@@ -9,4 +9,10 @@ class User < ApplicationRecord
   has_many :mafium, dependent: :destroy
   serialize :stateobject
 
+  # def update_current_users
+  #     self.remainingPlayers = self.users.reject{ |p| p.id == @current_user.id }
+  #     puts '#'*100
+  #     self.save
+  # end
+
 end

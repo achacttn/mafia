@@ -22,6 +22,14 @@
   });
 
 </script>
+<style>
+  #mafia_chat_wrapper {
+    display: none;
+  }
+
+
+</style>
+
 
 <h1>Rooms <%= @room.name %></h1>
 <br>
@@ -82,8 +90,8 @@
   <%= render partial: 'messages/message_form', locals:{room:@room, message: @message}%>
 <div>
 <br>
-
-  <% if @room.gamestate[:hasStarted]  && @current_user.stateobject[:mafia] %>
+<div id="mafia_chat_wrapper">
+  <%# if @current_user.stateobject[:mafia] %>
   <hr>
     <div id="privateChannel">
       <h4>Mafia channel:</h4>
@@ -94,8 +102,8 @@
       </div>
     </div>
     <br>
-
     <%= render partial: 'mafias/mafia_form', locals:{room:@room, message: @mafia}%>
-  <% end %>
+  <%# end %>
+</div>
 
 <%= link_to "Back to Rooms", rooms_path, id:"exit_room", class: "btn btn-primary" %>
