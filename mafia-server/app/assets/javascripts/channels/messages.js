@@ -17,21 +17,26 @@ $(document).ready(function () {
             .scrollTop( $('#messages')[0].scrollHeight );
             // return ret;
             break;
-          case 'GAME_START':
-            console.log(  data );
+          case 'READY_TO_START':
+            
+            $('#start').show();
             // another switch here to handle different data.type
             break;
-          case 'TIMER'
-          
-          break
-          
+          case 'UPDATING_PLAYERS':
+            console.log('working?', data);
+            // $('#playerlist').append( list_of_p )
         }
       },
 
       send_message: function( data ){
         console.log( 'send_message', data  );
         this.perform('send_message', data );
-      }
+      },
+
+      // assign_roles: function( data ){
+      //   this.perform();
+      // }
+
 
     });
 
