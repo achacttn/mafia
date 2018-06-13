@@ -22,6 +22,8 @@ class MessagesChannel < ApplicationCable::Channel
       puts "START GAME"
       current_user.room.start_game
       p current_user.room_id
+      
+
 
     when "remove_user"
       puts "User removed!!!"
