@@ -13,6 +13,7 @@ class MessagesController < ApplicationController
       p @message.user
 
       ActionCable.server.broadcast "room_#{ params[:message][:room_id] }_messages",
+        action: 'message',
         message: @message.text_body,
         user: @message.user.name
 
