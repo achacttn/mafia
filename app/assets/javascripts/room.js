@@ -49,7 +49,12 @@ const startNight =() => {
       clearInterval(tickId);
       $("input[name='vote']:checked").val()
 
+
+      ActionCable.server.broadcast `room_${ room_id }_messages`,
+        action: 'COLLECT_VOTES',
+        votes: 
       startDay();
+
   } , 21000);
 }
 
