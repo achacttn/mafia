@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: redis://h:p67060958dfa646a8b725cf40a2432a2869c145e29f8fab252762ccd60020de3f@ec2-35-169-18-251.compute-1.amazonaws.com:14219
+  url: redis://redistogo:721b9adc8f03099cdd0a778754d60494@cod.redistogo.com:11216/
   # channel_prefix: mafia-server_production
