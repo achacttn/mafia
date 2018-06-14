@@ -13,6 +13,7 @@
 //= require rails-ujs
 //= require activestorage
 //= require jquery3
+//= require jquery.countdown
 //= require_tree .
 //= require popper
 //= require bootstrap-sprockets

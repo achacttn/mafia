@@ -20,8 +20,11 @@ class MessagesChannel < ApplicationCable::Channel
     case data["event_type"]
     when "start_game"
       puts "START GAME"
+      #step 1: method in the room model to indicate the state to start (true)
       current_user.room.start_game
       p current_user.room_id
+      #step 2: to broadcast game start state change to all users in the room:
+      ActionCable.server.broadcast "room_#{ params[:room_id]}_messages", action: 'GAME_HAS_STARTED', roles: current_user.room.gamestate[:roles]
 
     when "remove_user"
       puts "User removed!!!"
@@ -37,7 +40,7 @@ class MessagesChannel < ApplicationCable::Channel
       ActionCable.server.broadcast "room_#{ params[:room_id]}_messages",
         action: 'UPDATING_PLAYERS',
         message: data[remainingPlayers]
-    end
+      end
 
 
   end

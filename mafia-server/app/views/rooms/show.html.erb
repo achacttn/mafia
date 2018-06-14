@@ -1,12 +1,13 @@
 <script>
   const room_id = <%= @room.id %>;
-
+  const user_id = <%= @current_user.id %>;
   $(document).ready(function(){
 
     $('#start').click(function(){
       console.log('clicked start');
-      App.room_messages.send_message({ 
+      App.room_messages.send_message({
         event_type: 'start_game'
+
        });
       return false;
      });
@@ -19,6 +20,25 @@
       return false;
     });
 
+    let night = 20;
+    nightTimer = setInterval(function(){
+    night --;
+    document.getElementById("timerNight").textContent = night;
+    if(night <= 0)
+        clearInterval(nightTimer);
+
+    },1000);
+
+    // let day = 120;
+    // dayTimer = setInterval(function(){
+    // day --;
+    // document.getElementById("timerDay").textContent = day;
+    // if(day <= 0)
+    //     clearInterval(dayTimer);
+    // },1000);
+
+
+
   });
 
 </script>
@@ -27,6 +47,54 @@
     display: none;
   }
 
+  #timerNight{
+    /* display: none; */
+    text-align: right;
+    font-size: 24px;
+    margin-top:0px;
+    color: blue;
+  }
+
+  #timerDay{
+    display: none;
+    text-align: right;
+    font-size: 24px;
+    margin-top:0px;
+    color: red;
+  }
+  #pressure0{
+    display: none;
+    color:blue;
+    font-size: 24px;
+  }
+  #pressure1{
+    display: none;
+    color:orange;
+    font-size: 30px;
+  }
+  @keyframes pressure {
+    from {background-color: blue;}
+    to {background-color: red;}
+  }
+  @keyframes blink {
+    from {opacity:1.0;}
+    to {opacity: 0.0;}
+  }
+
+  #pressure2{
+    color:red;
+    text-decoration: blink;
+    animation-name: blink;
+    animation-duration: 0.7s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+  }
+  #timesup{
+    display: none;
+    color: red;
+    font-size: 32px;
+  }
 
 </style>
 
@@ -77,6 +145,15 @@
   </ol>
 <% end %>
 
+<p> Kill poor citizens <span id="timerNight"> in 20 </span> Seconds</p>
+<p id="pressure0">tic tac tic tac</p>
+<p id="pressure1">Tic Tac Tic Tac</p>
+<p id="pressure2">TIC TAC TIC TAC</p>
+<p id="timesup">Time's up!!! Let's announce who got killed</p>
+
+
+<p> ELIMINATE MAFIAAAA!!!!!!! <span id="timerDay"> in 120 </span> Seconds</p>
+
 
 <div id="publicChannel">
   <h3>Messages:</h3>
@@ -88,7 +165,7 @@
   <br>
 
   <%= render partial: 'messages/message_form', locals:{room:@room, message: @message}%>
-<div>
+
 <br>
 <div id="mafia_chat_wrapper">
   <%# if @current_user.stateobject[:mafia] %>
@@ -106,4 +183,4 @@
   <%# end %>
 </div>
 
-<%= link_to "Back to Rooms", 'rooms_path', id:"exit_room", class: "btn btn-primary" %>
+<%= link_to "Back to Rooms", rooms_path(id:"exit_room"), class: "btn btn-primary" %>
