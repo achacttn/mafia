@@ -1,3 +1,6 @@
+
+let state = {};
+
 $(document).ready(function () {
   // only use this code in the rooms show page
   if( $('body.rooms.show').length ){
@@ -15,7 +18,23 @@ $(document).ready(function () {
 
 const startGame = (data) => {
   console.log("data from startGame", data);
-  let roles = data.roles
+  state.roles = data.roles;
+  state.myRole = state.roles[user_id];
+
+  if( state.myRole === 'mafia' ){
+    // indicate all mafia buddies in player list
+    for (let key in state.roles) {
+      if( state.roles[key] === 'mafia' ){
+        $(`#user${ key }`).prepend('(M) ');
+      }
+    }
+  } else {
+    // citizen
+    $(`#user${ user_id }`).prepend('(C) ');
+  }
+
+  $("#start").hide()
+
   // let citizenPlayers = [];
   // let mafiaPlayers = [];
   // for (var key in roles) {
@@ -26,12 +45,13 @@ const startGame = (data) => {
   //     mafiaPlayers.push(key)
   //   }
   // }
-  console.log("user_id before loop", roles, user_id);
-  for (var key in roles) {
+  console.log("user_id before loop", state.roles, user_id);
+  for (var key in state.roles) {
     console.log(key);
-    if (roles[key]==="mafia" && key==user_id) {
+    if (state.roles[key]==="mafia" && key==user_id) {
         console.log("user_id", user_id);
       $('#mafia_chat_wrapper').show();
     }
   }
+
 }
