@@ -2,6 +2,7 @@
   const room_id = <%= @room.id %>;
   const user_id = <%= @current_user.id %>;
   const users = <%= @room.users.pluck(:id, :name).to_h.to_json.html_safe %>;
+  const usersStatus = <%= @room.users.pluck(:id, :stateobject).to_json.html_safe %>
   $(document).ready(function(){
 
 
@@ -106,6 +107,11 @@
 <%= link_to "Reset!", reset_path %>
 <br>
 <br>
+
+<div id="tick"></div>
+<div id="voteBox"></div>
+<br>
+<br>
 <div class="container">
   <div class="row">
     Players:<br>
@@ -118,7 +124,6 @@
   <% end %>
 <%# if @current_user.present? %>
 <%#= link_to 'Edit', edit_room_path( @room ) %>
-|
 <%#= link_to 'Delete lol', room_path( @room ), method: 'delete' %>
 <%# end %>
 <br>

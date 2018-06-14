@@ -58,7 +58,10 @@ $(document).ready(function () {
               $('#notEnoughPlayers').hide();
             }
 
-            $('#playerlist').append(`<div id="user${ data.id }"><b>${ data.name }</b></div> &nbsp; &nbsp;`);
+            //add new player to the existing list
+              let aaa = `<div id="user${ data.id }"><b>${ data.name }</b>&nbsp; &nbsp;<input type="radio" name="vote" value="${data.id}"></div>`;
+
+            $('#playerlist').append( aaa );
           break;
 
           case 'PERSON_LEFT':

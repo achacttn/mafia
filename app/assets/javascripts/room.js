@@ -1,19 +1,57 @@
 
 let state = {};
+let tick = 20;
+let tickId;
 
 $(document).ready(function () {
   // only use this code in the rooms show page
+
   if( $('body.rooms.show').length ){
+    console.log("users", users);
+    console.log("usersStatus", usersStatus);
 
     $('#messages').scrollTop( $('#messages')[0].scrollHeight );
     $("#mafiaChannel").scrollTop($("#mafiaChannel")[0].scrollHeight);
 
+//existing players
     for(const uid in users){
       console.log( users[uid] );
-      $('#playerlist').append(`<div id="user${ uid }"><b>${ users[uid] }</b></div> &nbsp; &nbsp;`)
+      let bbb = `<div id="user${ uid }"><b>${ users[uid] }</b>&nbsp;&nbsp;<input type="radio" name="vote"  value="${uid}"></div>`;
+
+      $('#playerlist').append(bbb)
     }
   }
 });
+
+
+const updateTick = () => {
+  $('#tick').html(tick)
+  tick--
+}
+
+// const endNight = () => {
+//     clearInterval(tickId);
+  // $("input[name='vote']:checked").val()
+  // startDay();
+//
+// }
+
+const startDay = () => {
+  console.log("startDay");
+}
+
+
+const startNight =() => {
+
+  tickId = setInterval(updateTick, 1000);
+  // setTimeout(function(){clearInterval(tickId)}, 21000);
+    setTimeout( function(){
+      clearInterval(tickId);
+      $("input[name='vote']:checked").val()
+
+      startDay();
+  } , 21000);
+}
 
 
 const startGame = (data) => {
@@ -35,16 +73,6 @@ const startGame = (data) => {
 
   $("#start").hide()
 
-  // let citizenPlayers = [];
-  // let mafiaPlayers = [];
-  // for (var key in roles) {
-  //   console.log(key);
-  //   if (roles[key]==="citizen") {
-  //     citizenPlayers.push(key)
-  //   } else {
-  //     mafiaPlayers.push(key)
-  //   }
-  // }
   console.log("user_id before loop", state.roles, user_id);
   for (var key in state.roles) {
     console.log(key);
@@ -53,5 +81,5 @@ const startGame = (data) => {
       $('#mafia_chat_wrapper').show();
     }
   }
-
-}
+  startNight()//invoke start night
+}// game started
