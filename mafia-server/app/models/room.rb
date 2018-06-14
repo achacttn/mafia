@@ -21,7 +21,7 @@ class Room < ApplicationRecord
 
         # select the correct proportion of players to be mafia, randomly chosen
         self.users.sample((self.users.length/3).floor).each do |player|
-          p 'hash', player.stateobject
+            p 'hash', player.stateobject
             player.stateobject[:mafia] = true
             roles[player.id] = 'mafia';
             player.save
@@ -40,6 +40,11 @@ class Room < ApplicationRecord
             puts u.stateobject
             puts '2'*100
         end
+
+        puts "=" * 100
+        p roles
+
+        # binding.pry
 
         self.gamestate[:roles] = roles
         self.save

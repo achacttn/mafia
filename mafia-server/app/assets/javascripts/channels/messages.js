@@ -22,20 +22,31 @@ $(document).ready(function () {
             $('#start').show();
             // another switch here to handle different data.type
             break;
-          case 'UPDATING_PLAYERS':
-            console.log('working?', data);
-            // $('#playerlist').append( list_of_p )
-            break;
+          // case 'UPDATING_PLAYERS':
+          //   console.log('working?', data);
+          //   const list_of_p = [];
+          //   data.users.forEach( u => {
+          //     list_of_p.push("<p><b>" + u.name +"</b></p>")
+          //   } )
+          //   $('#playerlist').append( list_of_p )
+          //   break;
           case 'GAME_HAS_STARTED':
             // $('#').show()
             console.log(data);
-            // startGame();
+            startGame(data);
             // 1. assign roles to each player (loop over data.roles and set variable for each player that says whether they're mafia or citizen)
             //     - if they're mafia, also show an icon next to the other mafia players in the list for their room), and activate the mafia websockets channel for them
             // 2. start the timer for all players
 
             break;
-            
+
+          case 'PERSON_JOINED':
+          // check for canStart player number here
+          //$('#start').show(); show the start button
+            users[data.id] = data.name
+            $('#playerlist').append( "<p><b>" + data.name +"</b></p>" )
+          break;
+
 
         }
       },

@@ -22,7 +22,7 @@ class MafiaMessagesChannel < ApplicationCable::Channel
 
     ActionCable.server.broadcast "mafia_room#{ current_user.room_id }_messages",
       action: 'message',
-      message: data["messages"],
+      message: data["message"],
       user: current_user.name
 
   end
