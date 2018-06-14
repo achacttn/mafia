@@ -9,7 +9,6 @@ $(document).ready(function () {
       console.log( users[uid] );
       $('#playerlist').append(`<div id="user${ uid }"><b>${ users[uid] }</b></div> &nbsp; &nbsp;`)
     }
-
   }
 });
 
