@@ -9,11 +9,11 @@
 
 User.destroy_all
 
-u1 = User.create name: "Alex", password: "chicken", stateobject: [{ "mafia": false, "alive": true }]
-u2 = User.create name: "Bob", password: "chicken", stateobject: [{ "mafia": false, "alive": true }]
-u3 = User.create name: "Carol", password: "chicken", stateobject: [{ "mafia": false, "alive": true }]
-u4 = User.create name: "David", password: "chicken", stateobject: [{ "mafia": true, "alive": true }]
-u5 = User.create name: "Eve", password: "chicken", stateobject: [{ "mafia": true, "alive": true }]
+u1 = User.create name: "Alex", password: "chicken"
+u2 = User.create name: "Bob", password: "chicken"
+u3 = User.create name: "Carol", password: "chicken"
+u4 = User.create name: "David", password: "chicken"
+u5 = User.create name: "Eve", password: "chicken"
 
 
 Room.destroy_all
@@ -28,7 +28,7 @@ puts "Created #{ Room.all.length} rooms."
 
 r1.users << u2
 r1.users << u3
-r2.users << u4 
+r2.users << u4
 r2.users << u5
 
 puts "Created #{User.all.length} users."

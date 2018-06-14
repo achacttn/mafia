@@ -12,34 +12,49 @@ class Room < ApplicationRecord
       # room.start_game
         self.gamestate[:hasStarted] = true
         puts '+'*100
-        # broadcast 
+        # broadcast
         #    ActionCable.server.broadcast "room_#{ @room.id }_messages",
         #     action: 'GAME_START
+
+
+        roles = {}
+
+        # select the correct proportion of players to be mafia, randomly chosen
         self.users.sample((self.users.length/3).floor).each do |player|
+          p 'hash', player.stateobject
             player.stateobject[:mafia] = true
+            roles[player.id] = 'mafia';
             player.save
         end
-        
+
+        # remaining players are citizens
         self.users.each do |p|
             if !p.stateobject[:mafia]
                 p.stateobject[:mafia] = false
+                roles[p.id] = 'citizen';
                 p.save
             end
         end
-        
+
         self.users.each do |u|
             puts u.stateobject
             puts '2'*100
         end
+
+        self.gamestate[:roles] = roles
         self.save
         puts self.gamestate[:hasStarted]
         puts '3'*100
     end
 
-    def update_current_users
-        self.remainingPlayers = self.users.reject{ |p| p.id == current_user.id }
-        puts '#'*100
-        self.save
-    end
+    # def update_current_users
+    #     self.remainingPlayers = self.users.reject{ |p| p.id == current_user.id }
+    #     puts '#'*100
+    #     self.save
+    # end
+
+
+
+
 
 end
