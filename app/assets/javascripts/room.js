@@ -1,7 +1,7 @@
 
 let state = {};
-let tick = 20;
-let tickId;
+// let tick = 20;
+// let tickId;
 
 $(document).ready(function () {
   // only use this code in the rooms show page
@@ -24,10 +24,10 @@ $(document).ready(function () {
 });
 
 
-const updateTick = () => {
-  $('#tick').html(tick)
-  tick--
-}
+// const updateTick = () => {
+//   $('#tick').html(tick)
+//   tick--
+// }
 
 // const endNight = () => {
 //     clearInterval(tickId);
@@ -36,27 +36,58 @@ const updateTick = () => {
 //
 // }
 
-const startDay = () => {
-  console.log("startDay");
-}
+// const startDay = () => {
+//   console.log("startDay");
+//   tickId = setInterval(updateTick, 1000);
+//     setTimeout( function(){
+//       clearInterval(tickId);
+//       $("input[name='vote']:checked").val()
+//
+//       startNight();
+//   } , 21000);
+// }
 
 
-const startNight =() => {
+// const startNight =() => {
+//
+//   tickId = setInterval(updateTick, 1000);
+//   // setTimeout(function(){clearInterval(tickId)}, 21000);
+//     setTimeout( function(){
+//       clearInterval(tickId);
+//       $("input[name='vote']:checked").val()
+//
+//       startDay();
+//   } , 30000);
+// }
 
-  tickId = setInterval(updateTick, 1000);
-  // setTimeout(function(){clearInterval(tickId)}, 21000);
-    setTimeout( function(){
-      clearInterval(tickId);
-      $("input[name='vote']:checked").val()
+  let startDay;
+  let startNight;
 
+  startNight = (nightTimer) =>{
+    let night = 20;
+    nightTimer = setInterval(()=>{
+    night --;
+    $("#timerNight").html(night);
+      if(night === 0){
+        console.log(night)
+        $("#timesup").css("display","show")
+        clearInterval(nightTimer);
+        startDay();
+      }
+    },1000);
+  };
 
-      ActionCable.server.broadcast `room_${ room_id }_messages`,
-        action: 'COLLECT_VOTES',
-        votes: 
-      startDay();
-
-  } , 21000);
-}
+  startDay = (dayTimer) =>{
+    let day = 120;
+    dayTimer = setInterval(()=>{
+    day --;
+    $("#timerDay").html(day);
+    if(day === 0){
+        clearInterval(dayTimer);
+        startNight();
+      }
+  },1000);
+  };
 
 
 const startGame = (data) => {

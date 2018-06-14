@@ -1,8 +1,40 @@
 <script>
-  const room_id = <%= @room.id %>;
-  const user_id = <%= @current_user.id %>;
-  const users = <%= @room.users.pluck(:id, :name).to_h.to_json.html_safe %>;
-  const usersStatus = <%= @room.users.pluck(:id, :stateobject).to_json.html_safe %>
+  let totalState = {
+    // do not change to arrow function
+    killUser: function killUser(death_row_id){
+      // calling this method with totalState.killUser(user_id_to_be_killed)
+      // will change that user's alive state to false
+      // console.log(this.userInfo[death_row_id]["name"]);
+
+      this.userInfo[death_row_id]["alive"] = false;
+    },
+  };
+
+  let room_id = <%= @room.id %>;
+  // console.log('room_id: ', room_id);
+  let user_id = <%= @current_user.id %>;
+  // console.log('user_id: ', user_id);
+
+  // users is all users of the room
+  let users = <%= @room.users.pluck(:id, :name).to_h.to_json.html_safe %>;
+  console.log('all users in room: ', users);
+
+  // usersStatus contains array of arrays
+  // nested array contains plucked objects
+  let usersStatus = <%= @room.users.pluck(:id, :name, :stateobject).to_json.html_safe %>
+  // console.log('usersStatus: ', usersStatus);
+  // let checkingVar = usersStatus[0][1]['alive']; // returns true
+  // console.log('checkingVar: ', checkingVar)
+  let userInfo = {};
+  usersStatus.forEach( pluckedArr => userInfo[pluckedArr[0]] = { 'name': pluckedArr[1], 'mafia': pluckedArr[2]['mafia'], 'alive': pluckedArr[2]['alive'] } );
+  // console.log('userInfo: ', userInfo, Object.keys(userInfo).length);
+  let gameStateInfo = <%= @room.gamestate.to_h.to_json.html_safe %>;
+  totalState["gameStateInfo"] = gameStateInfo;
+  totalState["userInfo"] = userInfo;
+
+  console.log('this is the total state:', totalState);
+  
+  
   $(document).ready(function(){
 
 
@@ -24,23 +56,38 @@
       return false;
     });
 
-    let night = 20;
-    nightTimer = setInterval(function(){
-    night --;
-    document.getElementById("timerNight").textContent = night;
-    if(night <= 0)
-        clearInterval(nightTimer);
 
-    },1000);
-
-    // let day = 120;
-    // dayTimer = setInterval(function(){
-    // day --;
-    // document.getElementById("timerDay").textContent = day;
-    // if(day <= 0)
-    //     clearInterval(dayTimer);
-    // },1000);
-
+//     let startDay;
+//     let startNight;
+//
+//     startNight = (nightTimer) =>{
+//       let night = 20;
+//       nightTimer = setInterval(()=>{
+//       night --;
+//       $("#timerNight").html(night);
+//         if(night === 0){
+//           console.log(night)
+//           $("#timesup").css("display","show")
+//           clearInterval(nightTimer);
+//           startDay();
+//         }
+//       },1000);
+// };
+//
+//   startNight();
+//
+//   startDay = (dayTimer) =>{
+//     let day = 120;
+//     dayTimer = setInterval(()=>{
+//     day --;
+//     $("#timerDay").html(day);
+//     if(day === 0){
+//         clearInterval(dayTimer);
+//         startNight();
+//     }
+//
+//     },1000);
+//   };
 
 
   });
@@ -60,7 +107,7 @@
   }
 
   #timerDay{
-    display: none;
+    /* display: none; */
     text-align: right;
     font-size: 24px;
     margin-top:0px;
