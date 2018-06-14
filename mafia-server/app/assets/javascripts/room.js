@@ -3,6 +3,6 @@ $(document).ready(function () {
   if( $('body.rooms.show').length ){
 
     $('#messages').scrollTop( $('#messages')[0].scrollHeight );
-
+    
   }
 });

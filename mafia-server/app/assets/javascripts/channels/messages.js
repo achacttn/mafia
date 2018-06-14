@@ -33,9 +33,9 @@ $(document).ready(function () {
             // 1. assign roles to each player (loop over data.roles and set variable for each player that says whether they're mafia or citizen)
             //     - if they're mafia, also show an icon next to the other mafia players in the list for their room), and activate the mafia websockets channel for them
             // 2. start the timer for all players
-
-            break;
             
+            break;
+
 
         }
       },
