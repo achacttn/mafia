@@ -118,11 +118,11 @@
 <% if @room.image.present? %>
   <%= cl_image_tag @room.image, class: "img" %>
   <% end %>
-<% if @current_user.present? %>
-<%= link_to 'Edit', edit_room_path( @room ) %>
+<%# if @current_user.present? %>
+<%#= link_to 'Edit', edit_room_path( @room ) %>
 |
-<%= link_to 'Delete lol', room_path( @room ), method: 'delete' %>
-<% end %>
+<%#= link_to 'Delete lol', room_path( @room ), method: 'delete' %>
+<%# end %>
 <br>
   <div class="col-sm-10">
     <% if @room.gamestate[:canStart] %>
