@@ -70,14 +70,18 @@
 
  .playersDisplay {
    float:right;
-   font-size: 30px;
+   font-size: 20px;
    font-style: italic;
    font-weight: bold;
    text-align: right;
  }
 
- .playersDisplayTitle, .roomName {
-   font-size: 20px!important;
+ .playersDisplayTitle {
+   font-size: 15px!important;
+ }
+
+ .roomName {
+   font-size: 30px;
  }
 
  .playButton {

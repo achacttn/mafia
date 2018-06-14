@@ -1,3 +1,15 @@
+<script>
+$('#joinGame').click(function(){
+  console.log('joined game');
+  // App.room_messages.send_message({
+  //   event_type: 'start_game'
+  //
+  //  });
+  return false;
+ });
+</script>
+
+
 <h1>Rooms:</h1>
 
 <% if @current_user.present? %>
@@ -16,7 +28,7 @@
          <%= e.users.length %>
        </div>
          <div class = "playButton">
-           <%= link_to "Enter Room", room_path(e.id), class: "btn btn-success btn-block btn-sm buttonFont" %>
+           <%= link_to "Enter Room", room_path(e.id), class: "btn btn-success btn-block btn-sm buttonFont", id: "joinGame"%>
          </div>
     </div>
     <% end %>

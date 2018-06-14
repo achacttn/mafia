@@ -32,15 +32,21 @@ class RoomsController < ApplicationController
     @current_user.update( room_id: params[:id] )
     @current_user.update( stateobject: { mafia: nil, alive: true } )
 
+
+    ActionCable.server.broadcast "room_#{ @room.id }_messages",
+      action: 'PERSON_JOINED',
+      name: @current_user.name,
+      id: @current_user.id
+
     if @room.users.length > 2
       @room.update(gamestate: {
         canStart: true,
         hasStarted: false
       })
-      ActionCable.server.broadcast "room_#{ @room.id }_messages",
-
-        action: 'GAME_START',
-        count: 5  # whatever other data you want
+      # ActionCable.server.broadcast "room_#{ @room.id }_messages",
+      #
+      #   action: 'GAME_START',
+      #   count: 5  # whatever other data you want
 
     else
       @room.update(gamestate: {
