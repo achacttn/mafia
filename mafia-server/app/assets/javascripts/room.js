@@ -3,6 +3,12 @@ $(document).ready(function () {
   if( $('body.rooms.show').length ){
 
     $('#messages').scrollTop( $('#messages')[0].scrollHeight );
+    $("#mafiaChannel").scrollTop($("#mafiaChannel")[0].scrollHeight);
+
+    for(const uid in users){
+      console.log( users[uid] );
+      $('#playerlist').append(`<div id="user${ uid }"><b>${ users[uid] }</b></div> &nbsp; &nbsp;`)
+    }
 
   }
 });

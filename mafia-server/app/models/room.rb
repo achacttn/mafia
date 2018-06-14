@@ -20,6 +20,11 @@ class Room < ApplicationRecord
         roles = {}
 
         # select the correct proportion of players to be mafia, randomly chosen
+
+        puts "Room.game_start(): "
+        puts "     current users: #{ self.users.count }"
+        puts "     #{ self.users.pluck(:id, :name) }"
+
         self.users.sample((self.users.length/3).floor).each do |player|
             p 'hash', player.stateobject
             player.stateobject[:mafia] = true
@@ -35,6 +40,8 @@ class Room < ApplicationRecord
                 p.save
             end
         end
+
+        puts "Roles assigned: "
 
         self.users.each do |u|
             puts u.stateobject

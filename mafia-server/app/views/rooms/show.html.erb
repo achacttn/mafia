@@ -103,14 +103,13 @@
 
 
 <h1>Rooms <%= @room.name %></h1>
+<%= link_to "Reset!", reset_path %>
 <br>
 <br>
 <div class="container">
   <div class="row">
-    Players:
-      <div id="playerlist"></div>
-
-      </div>
+    Players:<br>
+      <div id="playerlist"> </div>
 </div>
 <br>
 <br>
@@ -127,7 +126,8 @@
     <% if @room.gamestate[:canStart] %>
      <%= button_tag "Start game", style: "display: show", class: "btn btn-danger btn-lg", id: "start"%>
     <% else %>
-      <%= 'Not enough players to start' %>
+      <%= button_tag "Start game", style: "display: none", class: "btn btn-danger btn-lg", id: "start"%>
+      <div id="notEnoughPlayers"><%= 'Not enough players to start' %></div>
     <% end %>
   </div>
 <br>

@@ -3,9 +3,33 @@ class MessagesChannel < ApplicationCable::Channel
   def subscribed
     # puts "subscribed!"
     # binding.pry
-    puts "="*100
-    p params
+    # puts "="*100
+    # p params
     stream_from "room_#{ params[:room_id] }_messages"
+
+    puts "J"*100
+    puts "Joined:", current_user
+
+    ActionCable.server.broadcast "room_#{ params[:room_id] }_messages",
+      action: 'PERSON_JOINED',
+      name: current_user.name,
+      id: current_user.id
+
+  end
+
+  def unsubscribed
+    puts "=========== UNSUBSCRIBED"
+    p current_user
+
+    room_id = current_user.room_id
+
+    current_user.update room_id: nil
+
+    ActionCable.server.broadcast "room_#{ room_id }_messages",
+      action: 'PERSON_LEFT',
+      name: current_user.name,
+      id: current_user.id
+
   end
 
   # This is actually *receiving* messages from the frontend

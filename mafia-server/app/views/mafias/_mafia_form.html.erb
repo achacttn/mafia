@@ -4,8 +4,21 @@
   <%= button_tag "Submit", class: "btn btn-primary", id: 'mafia_send' %>
 
 <script>
-   $('#mafia_send').click(function(){
-     console.log( $('#mafia_message').val() );
-     App.mafia_messages.send_message({ message: $('#mafia_message').val() });
-   });
+   // $('#mafia_send').click(function(){
+   //   console.log( $('#mafia_message').val() );
+   //   App.mafia_messages.send_message({ message: $('#mafia_message').val() });
+   // });
+
+
+   $('#mafia_message').keydown(function(event) {
+     if (event.keyCode === 13) {
+       // let msg = event.target.value
+       let msg = $('#mafia_message').val()
+       console.log("msg", msg);
+       App.mafia_messages.send_message({ message: $('#mafia_message').val() });
+       // App.messages.send({message: msg, room_id: roomId})
+       // $('[data-textarea="message"]').val(" ")
+       return false;
+      }
+    });
 </script>

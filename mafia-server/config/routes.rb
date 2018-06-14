@@ -13,7 +13,10 @@ Rails.application.routes.draw do
   delete '/login' => 'session#destroy'
 
   resources :mafias
+
   resources :rooms
+  get "/rooms/:id/reset" => "rooms#reset_game", as: :reset
+
   resources :messages
   resources :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

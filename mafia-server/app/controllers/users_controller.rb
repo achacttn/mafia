@@ -11,6 +11,7 @@ def create
 
   if user.persisted?
     session[:user_id] = user.id
+    cookies.encrypted[:user_id] = user.id   # need this for ActionCable (websockets)
     image = Cloudinary::Uploader.upload(params[:file])
     user.image = image["public_id"]
     user.save

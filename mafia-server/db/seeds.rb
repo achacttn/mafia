@@ -25,11 +25,11 @@ r5 = Room.create name: 'AnotherPlace', playerCount: 0, description: "Test"
 r6 = Room.create name: 'ThisPlace', playerCount: 0, description: "Test"
 
 puts "Created #{ Room.all.length} rooms."
-
-r1.users << u2
-r1.users << u3
-r2.users << u4
-r2.users << u5
+#
+# r1.users << u2
+# r1.users << u3
+# r2.users << u4
+# r2.users << u5
 
 puts "Created #{User.all.length} users."
 puts 'aaa'

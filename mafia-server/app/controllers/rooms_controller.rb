@@ -24,6 +24,13 @@ class RoomsController < ApplicationController
     end
   end
 
+  def reset_game
+    room = Room.find params[:id]
+    room.users.each{ |u| u.update stateobject: { alive: true, mafia: nil }, room_id: nil }
+    room.update gamestate: {}
+    redirect_to rooms_path
+  end
+
   def show
     @room = Room.find( params[:id] )
     # @room = Room.includes(:messages).find( params[:id] )
@@ -32,11 +39,11 @@ class RoomsController < ApplicationController
     @current_user.update( room_id: params[:id] )
     @current_user.update( stateobject: { mafia: nil, alive: true } )
 
-
-    ActionCable.server.broadcast "room_#{ @room.id }_messages",
-      action: 'PERSON_JOINED',
-      name: @current_user.name,
-      id: @current_user.id
+    #
+    # ActionCable.server.broadcast "room_#{ @room.id }_messages",
+    #   action: 'PERSON_JOINED',
+    #   name: @current_user.name,
+    #   id: @current_user.id
 
     if @room.users.length > 2
       @room.update(gamestate: {

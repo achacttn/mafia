@@ -8,6 +8,9 @@ $(document).ready(function () {
     // (this calls the 'subscribed' method in app/channels/messages_channel.rb)
     App.room_messages = App.cable.subscriptions.create({channel: 'MessagesChannel', room_id: room_id }, {
       received: function(data) {
+
+        console.log('received:', data);
+
         switch(data.action){
           case 'message':
             console.log('messages', data);
@@ -41,10 +44,35 @@ $(document).ready(function () {
             break;
 
           case 'PERSON_JOINED':
+            // check for canStart player number here
+            //$('#start').show(); show the start button
+            if( data.id === user_id ){
+              return;
+            }
+
+            users[data.id] = data.name
+
+            if( Object.keys(users).length === 3){
+              // show game button
+              $('#start').show();
+              $('#notEnoughPlayers').hide();
+            }
+
+            $('#playerlist').append(`<div id="user${ data.id }"><b>${ data.name }</b></div> &nbsp; &nbsp;`);
+          break;
+
+          case 'PERSON_LEFT':
           // check for canStart player number here
           //$('#start').show(); show the start button
-            users[data.id] = data.name
-            $('#playerlist').append( "<p><b>" + data.name +"</b></p>" )
+            console.log('PERSON_LEFT', data);
+            delete users[data.id];
+            $(`#user${ data.id }`).remove();
+
+            if( Object.keys(users).length < 3){
+              // show game button
+              $('#start').hide();
+            }
+
           break;
 
 
