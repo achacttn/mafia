@@ -140,8 +140,7 @@ class Room < ApplicationRecord
         # broadcast death or at least start of next round
         ActionCable.server.broadcast "room_#{ self.id }_messages",
           action: 'NEXT_ROUND',
-          death: death,
-          user: voting_user
+          death: death
 
 
         self.gamestate.delete( :votes )
