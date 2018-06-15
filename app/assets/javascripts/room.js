@@ -38,13 +38,6 @@ $(document).ready(function () {
 
 // const startDay = () => {
 //   console.log("startDay");
-//   tickId = setInterval(updateTick, 1000);
-//     setTimeout( function(){
-//       clearInterval(tickId);
-//       $("input[name='vote']:checked").val()
-//
-//       startNight();
-//   } , 21000);
 // }
 
 
@@ -64,31 +57,50 @@ $(document).ready(function () {
   let startNight;
 
   startNight = (nightTimer) =>{
+
     let night = 20;
+    $("#timerNightDisplay").show();
+    $("#timerNight").toggle();
     nightTimer = setInterval(()=>{
     night --;
     $("#timerNight").html(night);
       if(night === 0){
-        console.log(night)
-        $("#timesup").css("display","show")
+        console.log(night);
         clearInterval(nightTimer);
         startDay();
+        $("#timerNightDisplay").hide();
+        $("#timerNight").toggle();
       }
     },1000);
+
   };
 
   startDay = (dayTimer) =>{
+
     let day = 120;
+    $("#timerDayDisplay").show();
+    $("#timerDay").toggle();
     dayTimer = setInterval(()=>{
     day --;
     $("#timerDay").html(day);
     if(day === 0){
+
         clearInterval(dayTimer);
         startNight();
-      } 
-  },1000);
+      }
+    },1000);
   };
 
+  // startPause = (dayTimer) =>{
+  //   let pause = 10;
+  //     pauseTimer = setInterval(()=>{
+  //     pause --;
+  //   if(pause === 0){
+  //       clearInterval(pause);
+  //
+  //     }
+  //   },1000);
+  // };
 
 const startGame = (data) => {
   console.log("data from startGame", data);
@@ -117,5 +129,6 @@ const startGame = (data) => {
       $('#mafia_chat_wrapper').show();
     }
   }
-  startNight()//invoke start night
+  startNight()
+  //invoke start night
 }// game started
