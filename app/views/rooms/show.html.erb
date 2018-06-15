@@ -71,40 +71,6 @@
     // $("input[name='vote']:checked").val()
   });
 
-
-//     let startDay;
-//     let startNight;
-//
-//     startNight = (nightTimer) =>{
-//       let night = 20;
-//       nightTimer = setInterval(()=>{
-//       night --;
-//       $("#timerNight").html(night);
-//         if(night === 0){
-//           console.log(night)
-//           $("#timesup").css("display","show")
-//           clearInterval(nightTimer);
-//           startDay();
-//         }
-//       },1000);
-// };
-//
-//   startNight();
-//
-//   startDay = (dayTimer) =>{
-//     let day = 120;
-//     dayTimer = setInterval(()=>{
-//     day --;
-//     $("#timerDay").html(day);
-//     if(day === 0){
-//         clearInterval(dayTimer);
-//         startNight();
-//     }
-//
-//     },1000);
-//   };
-
-
   });
 
 </script>
@@ -114,20 +80,28 @@
   }
 
   #timerNight{
-    /* display: none; */
+    display: none;
     text-align: right;
     font-size: 24px;
     margin-top:0px;
     color: blue;
   }
 
+  #timerNightDisplay{
+    display: none;
+  }
+
   #timerDay{
-    /* display: none; */
+    display: none;
     text-align: right;
     font-size: 24px;
     margin-top:0px;
     color: red;
   }
+  #timerDayDisplay{
+    display: none;
+  }
+
   #pressure0{
     display: none;
     color:blue;
@@ -211,15 +185,15 @@
   </ol>
 <% end %>
 
-<p> Kill poor citizens <span id="timerNight"> in 20 </span> Seconds</p>
-<p id="pressure0">tic tac tic tac</p>
-<p id="pressure1">Tic Tac Tic Tac</p>
+<div id="timerNightDisplay">
+<p> Kill poor citizens in<span id="timerNight"> 20 </span> Seconds</p>
 <p id="pressure2">TIC TAC TIC TAC</p>
 <p id="timesup">Time's up!!! Let's announce who got killed</p>
+</div>
 
-
-<p> ELIMINATE MAFIAAAA!!!!!!! <span id="timerDay"> in 120 </span> Seconds</p>
-
+<div id="timerDayDisplay">
+<p> ELIMINATE MAFIAAAA in!!!!!!! <span id="timerDay"> 120 </span> Seconds</p>
+</div>
 
 <div id="publicChannel">
   <h3>Messages:</h3>
