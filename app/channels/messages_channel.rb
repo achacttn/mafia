@@ -64,9 +64,20 @@ class MessagesChannel < ApplicationCable::Channel
       ActionCable.server.broadcast "room_#{ params[:room_id]}_messages",
         action: 'UPDATING_PLAYERS',
         message: data[remainingPlayers]
-      end
+
+    when "submit_vote"
+      puts "*" * 100
+      puts data
+
+      current_user.room.register_vote(
+        current_user,
+        data["vote_type"],
+        data["vote"]
+      )
+
+    end  # case
 
 
-  end
+  end # send_message()
 
 end

@@ -13,12 +13,12 @@ $(document).ready(function () {
     $('#messages').scrollTop( $('#messages')[0].scrollHeight );
     $("#mafiaChannel").scrollTop($("#mafiaChannel")[0].scrollHeight);
 
-//existing players
+    //existing players
     for(const uid in users){
       console.log( users[uid] );
-      let bbb = `<div id="user${ uid }"><b>${ users[uid] }</b>&nbsp;&nbsp;<input type="radio" name="vote"  value="${uid}"></div>`;
+      let bbb = `<div id="user${ uid }"><b>${ users[uid] }</b>&nbsp;&nbsp;<input type="radio" name="vote"  value="${uid}"></div><div id="voteDisplay"></div>`;
 
-      $('#playerlist').append(bbb)
+      $('#playerlist').append(bbb);
     }
   }
 });
@@ -72,7 +72,15 @@ $(document).ready(function () {
         console.log(night)
         $("#timesup").css("display","show")
         clearInterval(nightTimer);
-        startDay();
+
+        App.room_messages.send_message({
+          event_type: 'submit_vote',
+          vote_type: 'night',
+          vote: $("input[name='vote']:checked").val()
+        });
+
+        //
+        // startDay();
       }
     },1000);
   };

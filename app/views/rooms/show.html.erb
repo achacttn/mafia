@@ -33,8 +33,8 @@
   totalState["userInfo"] = userInfo;
 
   console.log('this is the total state:', totalState);
-  
-  
+
+
   $(document).ready(function(){
 
 
@@ -54,7 +54,22 @@
         event_type: 'remove_user',
       });
       return false;
-    });
+
+
+    let clicks = new Array();
+
+    // $('input[type=radio][name=vote]').change(function() {
+    //   // if ( $("input[name='vote']:checked")) {
+    //     console.log(this.value);
+    //     console.log("voted!")
+    //     clicks.push($("input[name='vote']:checked").val());
+    //     App.vote.voted($("input[name='vote']:checked").val());
+    //     App.vote.reduce(clicks[clicks.length -2])
+    //   // }
+    // });
+
+    // $("input[name='vote']:checked").val()
+  });
 
 
 //     let startDay;

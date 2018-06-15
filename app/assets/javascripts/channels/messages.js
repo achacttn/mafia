@@ -59,7 +59,7 @@ $(document).ready(function () {
             }
 
             //add new player to the existing list
-              let aaa = `<div id="user${ data.id }"><b>${ data.name }</b>&nbsp; &nbsp;<input type="radio" name="vote" value="${data.id}"></div>`;
+              let aaa = `<div id="user${ data.id }"><b>${ data.name }</b>&nbsp; &nbsp;<input type="radio" name="vote" value="${data.id}"></div><div id="voteDisplay"></div>`;
 
             $('#playerlist').append( aaa );
           break;
@@ -113,6 +113,37 @@ $(document).ready(function () {
       }
 
     });
+
+
+
+    //Create a new websockets channel just for votes
+    App.vote = App.cable.subscriptions.create({channel: "VoteChannel", room_id: room_id },
+    {
+      received: function(data) {
+        console.log("vote message", data);
+
+        let count = parseInt($("#voteDisplay").text());
+
+        if (data["action"]=="add"){
+          $("voteDisplay").html(count +1)
+        } else if (data["action"]=="subtract"){
+          $("voteDisplay").html(count +1)
+        }
+
+        let totalCount = 0;
+
+      },
+
+      voted: function(data){
+        console.log("send_vote_message", data);
+        this.perform('send_voted_message', data)
+      },
+
+      // reduce: function(data){
+      //   console.log("send_reduce_message", data);
+      //   this.perform('send_reduce_message', data)
+      // }
+    })
 
     // Create a new websockets channel just for private messages to this user
     // (this calls the 'subscribed' method in app/channels/private_messages_channel.rb)
