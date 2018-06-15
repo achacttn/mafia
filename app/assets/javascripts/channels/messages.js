@@ -49,6 +49,15 @@ $(document).ready(function () {
             if( data.id === user_id ){
               return;
             }
+            // when someone joins, add them to the totalState
+            // initialize their mafia and alive state
+            console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+            // data.id gives id
+            // data.name gives name
+            totalState["userInfo"][data.id] = { "name": data.name, "mafia": null, "alive": true };
+            console.log(data);
+            console.log(totalState.userInfo);
+            console.log('from inside case PERSON_JOINED: ', totalState);
 
             users[data.id] = data.name
 

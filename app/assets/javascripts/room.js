@@ -1,14 +1,14 @@
-
 let state = {};
 // let tick = 20;
 // let tickId;
 
 $(document).ready(function () {
   // only use this code in the rooms show page
+  // console.log( 'from roomjs file: ', totalState["userInfo"] );
 
   if( $('body.rooms.show').length ){
-    console.log("users", users);
-    console.log("usersStatus", usersStatus);
+    // console.log("users", users);
+    // console.log("usersStatus", usersStatus);
 
     $('#messages').scrollTop( $('#messages')[0].scrollHeight );
     $("#mafiaChannel").scrollTop($("#mafiaChannel")[0].scrollHeight);
@@ -17,6 +17,13 @@ $(document).ready(function () {
     for(const uid in users){
       console.log( users[uid] );
       let bbb = `<div id="user${ uid }"><b>${ users[uid] }</b>&nbsp;&nbsp;<input type="radio" name="vote"  value="${uid} id=${uid}"></div>`;
+
+
+// let currentRoomUsers =  totalState["userInfo"]
+// //existing players
+// for(const uid in currentRoomUsers){
+//   // console.log('wtfffff: ', currentRoomUsers[uid] );
+//   let bbb = `<div id="user${ uid }"><b>${ currentRoomUsers[uid]["name"] }</b>&nbsp;&nbsp;<input type="radio" name="vote"  value="${uid}"></div>`;
 
       $('#playerlist').append(bbb);
     }
@@ -52,6 +59,7 @@ $(document).ready(function () {
 //       startDay();
 //   } , 30000);
 // }
+
 
   let startDay;
   let startNight;
@@ -122,21 +130,43 @@ $(document).ready(function () {
   // };
 
 const startGame = (data) => {
-  console.log("data from startGame", data);
-  state.roles = data.roles;
-  state.myRole = state.roles[user_id];
+  // console.log("data from startGame", data);
+  // console.log('before timers: ', totalState);
+  // console.log(data);
 
-  if( state.myRole === 'mafia' ){
-    // indicate all mafia buddies in player list
-    for (let key in state.roles) {
-      if( state.roles[key] === 'mafia' ){
-        $(`#user${ key }`).prepend('(M) ');
-      }
+  console.log(data.roles);
+  // have to add all users first
+  for ( let eachU in data.roles ){
+    // console.log(totalState)
+    console.log('eachU: ', eachU)
+    console.log('totalState.userInfo:', totalState.userInfo)
+    totalState.userInfo[eachU]["mafia"] = data.roles[eachU] === "mafia";
+
+    if (totalState.userInfo[eachU]["mafia"]){
+      $(`#user${ eachU }`).prepend(' (MAFIA) ');
+    } else {
+      $(`#user${ eachU }`).prepend(' (CITIZEN) ');
     }
-  } else {
-    // citizen
-    $(`#user${ user_id }`).prepend('(C) ');
+    // console.log('user of id ', eachU, totalState.userInfo[eachU]["name"], 'has been assigned the role of', totalState.userInfo[eachU]["mafia"]);
   }
+
+  console.log('after role asigned: ', totalState);
+
+
+  // state.roles = data.roles;
+  // state.myRole = state.roles[user_id];
+
+  // if( state.myRole === 'mafia' ){
+  //   // indicate all mafia buddies in player list
+  //   for (let key in state.roles) {
+  //     if( state.roles[key] === 'mafia' ){
+  //       $(`#user${ key }`).prepend('(M) ');
+  //     }
+  //   }
+  // } else {
+  //   // citizen
+  //   $(`#user${ user_id }`).prepend('(C) ');
+  // }
 
   $("#start").hide()
 
