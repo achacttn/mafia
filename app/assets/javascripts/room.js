@@ -16,7 +16,7 @@ $(document).ready(function () {
     //existing players
     for(const uid in users){
       console.log( users[uid] );
-      let bbb = `<div id="user${ uid }"><b>${ users[uid] }</b>&nbsp;&nbsp;<input type="radio" name="vote"  value="${uid}"></div><div id="voteDisplay"></div>`;
+      let bbb = `<div id="user${ uid }"><b>${ users[uid] }</b>&nbsp;&nbsp;<input type="radio" name="vote"  value="${uid} id=${uid}"></div>`;
 
       $('#playerlist').append(bbb);
     }
@@ -97,6 +97,14 @@ $(document).ready(function () {
     if(day === 0){
 
         clearInterval(dayTimer);
+
+
+        App.room_messages.send_message({
+          event_type: 'submit_vote',
+          vote_type: 'day',
+          vote: $("input[name='vote']:checked").val()
+        });
+
         startNight();
       }
   },1000);

@@ -59,7 +59,7 @@ $(document).ready(function () {
             }
 
             //add new player to the existing list
-              let aaa = `<div id="user${ data.id }"><b>${ data.name }</b>&nbsp; &nbsp;<input type="radio" name="vote" value="${data.id}"></div><div id="voteDisplay"></div>`;
+              let aaa = `<div id="user${ data.id }"><b>${ data.name }</b>&nbsp; &nbsp;<input type="radio" name="vote" value="${data.id} id ="radio${data.id}"></div>`;
 
             $('#playerlist').append( aaa );
           break;
@@ -78,7 +78,19 @@ $(document).ready(function () {
 
           break;
 
-
+          case "NEXT_ROUND":
+            console.log("NEXT_ROUND", data);
+            console.log("NEXT_ROUND: Death", data.death);
+            $(`#user${parseInt(data.death)}`).css("text-decoration", "line-through");
+            $(`#radio${parseInt(data.death)}`).hide();
+            // let annoucement = "";
+            // if (true) {
+            //
+            // } else if {
+            //
+            // }
+            $("#timesup").html(`Player ${data.user.name} is dead! Mafia: ${data.user.stateobject["mafia"]}`);
+          break;
         }
       },
 

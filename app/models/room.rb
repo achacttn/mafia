@@ -109,7 +109,7 @@ class Room < ApplicationRecord
       current_vote_count = self.gamestate[:vote_count] || 0
       self.gamestate[:vote_count] = current_vote_count + 1
       self.save
-      
+
       puts "UPDATED VOTE COUNT:"
       p self.gamestate
 
@@ -140,7 +140,8 @@ class Room < ApplicationRecord
         # broadcast death or at least start of next round
         ActionCable.server.broadcast "room_#{ self.id }_messages",
           action: 'NEXT_ROUND',
-          death: death
+          death: death,
+          user: voting_user
 
 
         self.gamestate.delete( :votes )
